@@ -166,26 +166,53 @@
   renderer.autoClear = false;
   renderer.setClearColor(0x0e0118, 1);
 
-  /* ---------- Fond : texte qui ondule ---------- */
+  /* ---------- Fond : texte qui ondule ----------
+     Une planche de LINES lignes : chaque ligne enchaîne les mots de
+     config.js dans un ordre différent, chaque rangée à l'écran lit
+     une ligne différente. */
+  const LINES = 8, LINE_H = 256;
   const strip = document.createElement("canvas");
-  strip.width = 2048; strip.height = 256;
+  strip.width = renderer.capabilities.maxTextureSize >= 8192 ? 8192 : 4096;
+  strip.height = LINES * LINE_H;
   const stripTex = new THREE.CanvasTexture(strip);
   stripTex.wrapS = THREE.RepeatWrapping; stripTex.wrapT = THREE.ClampToEdgeWrapping;
   stripTex.anisotropy = 4;
+  const WORDS = (CFG.heroWords && CFG.heroWords.length ? CFG.heroWords : ["Versatyl"]).map((w) => w.toUpperCase());
+  const SEP = "  —  ";
 
-  function drawStrip(word) {
+  function shuffled(list, seed) {
+    const a = list.slice();
+    let s = seed * 9301 + 49297;
+    const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  }
+
+  function drawStrip() {
     const ctx = strip.getContext("2d");
     ctx.clearRect(0, 0, strip.width, strip.height);
     ctx.font = '228px "Redband"';
     ctx.textBaseline = "middle";
-    const unit = word + "  ";
-    const ww = ctx.measureText(unit).width;
-    const n = Math.max(1, Math.round(strip.width / ww));
-    ctx.save();
-    ctx.scale(strip.width / (n * ww), 1);
     ctx.fillStyle = "#fff";
-    for (let i = 0; i < n; i++) ctx.fillText(unit, i * ww, strip.height / 2 + 12);
-    ctx.restore();
+    const W = strip.width;
+    for (let line = 0; line < LINES; line++) {
+      const order = shuffled(WORDS, line + 1);
+      // on prend des mots jusqu'à remplir la ligne, puis on ajuste
+      // légèrement la largeur pour que la boucle soit sans couture
+      const units = []; let w = 0, k = 0;
+      while (true) {
+        const u = order[k % order.length] + SEP, uw = ctx.measureText(u).width;
+        if (units.length && Math.abs(W - (w + uw)) > Math.abs(W - w)) break;
+        units.push(u); w += uw; k++;
+        if (k > 200) break;
+      }
+      ctx.save();
+      ctx.translate(0, line * LINE_H);
+      ctx.scale(W / w, 1);
+      let x = 0;
+      units.forEach((u) => { ctx.fillText(u, x, LINE_H / 2 + 12); x += ctx.measureText(u).width; });
+      ctx.restore();
+    }
     stripTex.needsUpdate = true;
   }
 
@@ -194,7 +221,10 @@
     uTime: { value: 0 },
     uRows: { value: 5 },
     uAspect: { value: 1 },
-    uStripAR: { value: 6.2 },
+    // longueur d'une ligne de la planche, en hauteurs de rangée
+    // (0.775 = léger resserrement horizontal des lettres, comme avant)
+    uStripAR: { value: (strip.width / LINE_H) * 0.775 },
+    uLines: { value: LINES },
     uMouse: { value: new THREE.Vector2(0.5, 0.5) },
     uVel: { value: 0 },
     uIntro: { value: 0 },
@@ -207,7 +237,7 @@
     fragmentShader: `
       precision highp float;
       uniform sampler2D uText;
-      uniform float uTime, uRows, uAspect, uStripAR, uVel, uIntro, uGlitch, uScroll;
+      uniform float uTime, uRows, uAspect, uStripAR, uVel, uIntro, uGlitch, uScroll, uLines;
       uniform vec2 uMouse;
       varying vec2 vUv;
       float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -229,9 +259,13 @@
 
         float row = floor(uv.y * uRows);
         float dir = mod(row, 2.0) * 2.0 - 1.0;
-        float tx = uv.x * uAspect * uRows / uStripAR + uTime * 0.035 * dir + row * 0.37 + uScroll * 1.5 * dir;
+        float speed = 6.2 / uStripAR; // même vitesse à l'écran qu'avant
+        float tx = uv.x * uAspect * uRows / uStripAR + (uTime * 0.035 + uScroll * 1.5) * speed * dir + row * 0.37;
         float ty = fract(uv.y * uRows);
-        float a = texture2D(uText, vec2(tx, ty)).a;
+        // chaque rangée lit sa propre ligne de mots dans la planche
+        float line = mod(row, uLines);
+        float tv = (uLines - line - 1.0 + clamp(ty, 0.02, 0.98)) / uLines;
+        float a = texture2D(uText, vec2(tx, tv)).a;
 
         vec3 nuit = vec3(0.055, 0.004, 0.094);
         vec3 fuchsia = vec3(0.93, 0.0, 0.71);
@@ -511,7 +545,6 @@
     const ph = readScroll();
     if (ph !== bgPhase) {
       bgPhase = ph;
-      drawStrip(PHASES[ph].word);
       bgUniforms.uGlitch.value = 1;
     }
     if (!useFallback && ph !== state.phase && !busy) {
@@ -574,9 +607,9 @@
   resize();
   state.phase = readScroll();
   updateHud();
-  drawStrip(PHASES[state.phase].word);
+  drawStrip();
   (document.fonts ? document.fonts.load('228px "Redband"') : Promise.resolve())
-    .then(() => drawStrip(PHASES[state.phase].word)).catch(() => {});
+    .then(() => drawStrip()).catch(() => {});
   buildLogo().catch(() => {});
   if (isFile) {
     // Ouvert en double-clic : le navigateur bloque la vidéo dans WebGL.

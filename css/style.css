@@ -48,11 +48,16 @@ body {
   font-size: 15px;
   line-height: 1.65;
   letter-spacing: .02em;
-  overflow-x: hidden;
+  /* pas d'overflow-x ici : sur body il casse le logo collant du haut
+     (html s'en charge déjà) */
+  /* pas de surlignage quand on sélectionne à la souris */
+  -webkit-user-select: none; user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
-img, video, svg { display: block; max-width: 100%; }
+img, video, svg { display: block; max-width: 100%; -webkit-user-drag: none; }
 a { color: inherit; }
-::selection { background: var(--fuchsia); color: var(--nuit); }
+::selection { background: transparent; }
 :focus-visible { outline: 2px solid var(--fuchsia); outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -136,7 +141,7 @@ a { color: inherit; }
 }
 
 /* ---------- hero ---------- */
-.hero { position: relative; height: 320vh; }
+.hero { position: relative; height: 220vh; }
 .hero-sticky {
   position: sticky; top: 0; height: 100vh; height: 100svh;
   overflow: hidden; background: var(--nuit);
@@ -240,7 +245,7 @@ a { color: inherit; }
 /* ---------- manifeste ---------- */
 .manifesto {
   position: relative; z-index: 1; overflow: hidden;
-  padding: clamp(90px, 14vw, 200px) var(--gutter);
+  padding: clamp(70px, 9vw, 130px) var(--gutter) clamp(90px, 14vw, 200px);
   background: var(--nuit);
 }
 .manifesto-text {

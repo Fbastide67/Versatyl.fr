@@ -18,6 +18,15 @@ window.VERSATYL_CONFIG = {
     danceteria: ["danceteria-2", "danceteria-1", "danceteria-4", "danceteria-3", "danceteria-5", "danceteria-6"]
   },
 
+  // Mots qui défilent derrière le gros logo (chaque rangée les mélange).
+  // Sans accents : la police Redband ne les a pas.
+  heroWords: [
+    "Absolem", "Danceteria", "Manray", "Le Nucleaire", "Traverse des Balkis", "Estaminet",
+    "Marseille", "Soleil", "Soiree", "After", "Dancefloor", "Versatyl",
+    "Techno", "Hardtechno", "Trance", "Indus", "Schranz", "Hardgroove",
+    "Acid", "House", "Hardcore", "Minimal", "Indie dance"
+  ],
+
   // Durée d'affichage d'un clip avant de passer au suivant (ms)
   clipDuration: 6500
 };
