@@ -1,35 +1,32 @@
 /* ============================================================
    VERSATYL · feuille de style
-   Polices : déposer les fichiers dans assets/fonts/ (voir LISEZ-MOI.txt)
+   Polices : Good Times (Rg Regular, Rg Bold, Hv) et Redband, dans assets/fonts/
    ============================================================ */
 
 @font-face {
   font-family: 'Good Times';
-  src: local('Good Times Rg'), local('GoodTimesRg-Bold'),
-       url('../fonts/GoodTimesRg-Bold.woff2') format('woff2'),
-       url('../fonts/GoodTimesRg-Bold.woff') format('woff'),
-       url('../fonts/GoodTimesRg-Bold.otf') format('opentype'),
-       url('../fonts/GoodTimesRg-Bold.ttf') format('truetype');
+  src: url('../fonts/GoodTimesRg-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Good Times';
+  src: url('../fonts/GoodTimesRg-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Good Times';
-  src: url('../fonts/GoodTimesRg-Regular.woff2') format('woff2'),
-       url('../fonts/GoodTimesRg-Regular.otf') format('opentype'),
-       url('../fonts/GoodTimesRg-Regular.ttf') format('truetype');
-  font-weight: 400;
+  src: url('../fonts/GoodTimesHv-Regular.ttf') format('truetype');
+  font-weight: 800 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Redband';
-  src: local('Redband Regular'), local('Redband-Regular'),
-       url('../fonts/Redband-Regular.woff2') format('woff2'),
-       url('../fonts/Redband-Regular.woff') format('woff'),
-       url('../fonts/Redband-Regular.otf') format('opentype'),
-       url('../fonts/Redband-Regular.ttf') format('truetype');
+  src: url('../fonts/Redband-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -47,6 +44,7 @@
   --ligne: #2A2738;
 
   --f-titre: 'Good Times', 'Archivo', system-ui, sans-serif;
+  /* Redband n'a pas les lettres accentuées : à réserver aux textes sans accent */
   --f-accent: 'Redband', 'Good Times', 'Archivo', system-ui, sans-serif;
   --f-texte: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
@@ -93,7 +91,8 @@ p { margin: 0 0 1em; }
 .skip:focus { left: 8px; }
 
 .kicker {
-  font-family: var(--f-accent);
+  font-family: var(--f-titre);
+  font-weight: 700;
   color: var(--lilas);
   text-transform: uppercase;
   letter-spacing: .14em;

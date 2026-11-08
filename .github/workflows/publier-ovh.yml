@@ -30,7 +30,7 @@ jobs:
           mkdir -p _site
           rsync -a \
             --exclude='.git' --exclude='.github' --exclude='_site' \
-            --exclude='*.md' --exclude='LISEZ-MOI.txt' \
+            --exclude='*.md' \
             ./ _site/
           echo "Fichiers qui seront en ligne :"
           find _site -type f | sort
