@@ -1,0 +1,52 @@
+# Publie le site vitrine sur versatyl.fr (hébergement OVH).
+# Ne se lance JAMAIS tout seul : onglet « Actions » → « Publier sur versatyl.fr » → « Run workflow ».
+#
+# Envoie le contenu de ce dépôt à la racine de www/ SANS toucher au dossier www/shopping/
+# (la boutique, publiée depuis le dépôt versatyl-boutique).
+#
+# Secret à renseigner dans Settings → Secrets and variables → Actions : OVH_FTP_PASSWORD.
+name: Publier sur versatyl.fr
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: publier-ovh
+  cancel-in-progress: false
+
+env:
+  OVH_SERVEUR: ssh.cluster129.hosting.ovh.net
+  OVH_LOGIN: versatv
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Préparer les fichiers du site
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude='.git' --exclude='.github' --exclude='_site' \
+            --exclude='*.md' --exclude='LISEZ-MOI.txt' \
+            ./ _site/
+          echo "Fichiers qui seront en ligne :"
+          find _site -type f | sort
+
+      - name: Envoyer sur OVH
+        env:
+          LFTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
+        run: |
+          if [ -z "$LFTP_PASSWORD" ]; then
+            echo "::error::Le secret OVH_FTP_PASSWORD n'est pas renseigné (Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set net:max-retries 2;
+            open -u $OVH_LOGIN --env-password sftp://$OVH_SERVEUR;
+            mirror --reverse --delete --verbose --parallel=4 --exclude-glob shopping/ _site/ www/;
+          "

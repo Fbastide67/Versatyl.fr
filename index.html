@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Versatyl · Collectif techno à Marseille</title>
+<meta name="description" content="Versatyl, collectif techno marseillais : soirées en progression de la house au hardcore, DJs résidents, courts-métrages et vêtements produits de façon éthique.">
+<meta name="theme-color" content="#0A0A0F">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Versatyl · Collectif techno à Marseille">
+<meta property="og:description" content="Des line-ups construits autour d'une énergie et d'une progression musicale, de la house au hardcore.">
+<meta property="og:image" content="https://versatyl.fr/assets/img/og.jpg">
+<meta property="og:url" content="https://versatyl.fr/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#agenda">Aller au contenu</a>
+
+<header class="header" id="header">
+  <div class="header__inner">
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav nav--left" aria-label="Navigation principale">
+      <a href="#agenda">Agenda</a>
+      <a href="#residents">Résidents</a>
+      <a href="#formats">Formats</a>
+    </nav>
+    <a class="header__logo" href="#top" aria-label="Versatyl, retour en haut">
+      <img src="assets/img/logo-clair.svg" alt="Versatyl" width="593" height="250">
+    </a>
+    <nav class="nav nav--right" aria-label="Navigation secondaire">
+      <a href="#collectif">Collectif</a>
+      <a href="#galerie">Galerie</a>
+      <a class="btn btn--small" href="https://versatyl.fr/shopping/">Boutique</a>
+    </nav>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Menu mobile">
+    <a href="#agenda">Agenda</a>
+    <a href="#residents">Résidents</a>
+    <a href="#formats">Formats</a>
+    <a href="#collectif">Collectif</a>
+    <a href="#galerie">Galerie</a>
+    <a href="https://versatyl.fr/shopping/">Boutique</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</div>
+
+<main id="top">
+
+  <!-- HERO : logo au centre, photos de soirées en fond -->
+  <section class="hero" aria-label="Versatyl">
+    <div class="hero__slides" aria-hidden="true">
+      <img class="is-active" src="assets/img/nucleaire-2.jpg" alt="">
+      <img src="assets/img/tout-est-permis-1.jpg" alt="">
+      <img src="assets/img/boutique-hero.jpg" alt="">
+      <img src="assets/img/traverse-1.jpg" alt="">
+    </div>
+    <div class="hero__content">
+      <h1 class="hero__logo">
+        <img src="assets/img/logo-clair.svg" alt="Versatyl" width="593" height="250">
+      </h1>
+      <p class="hero__tagline">Collectif techno · Marseille</p>
+      <a class="hero__next" id="hero-next" href="#agenda">
+        <span class="hero__next-label">Prochaine date</span>
+        <span class="hero__next-event" id="hero-next-event">Voir l'agenda</span>
+      </a>
+    </div>
+    <a class="hero__scroll" href="#agenda" aria-label="Descendre vers l'agenda">↓</a>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>House</span><span>Trance</span><span>Hard groove</span><span>Hard techno</span><span>Schranz</span><span>Acid</span><span>Indus</span><span>Hardcore</span><span>Bounce</span><span>Minimal</span>
+      <span>House</span><span>Trance</span><span>Hard groove</span><span>Hard techno</span><span>Schranz</span><span>Acid</span><span>Indus</span><span>Hardcore</span><span>Bounce</span><span>Minimal</span>
+    </div>
+  </div>
+
+  <!-- AGENDA -->
+  <section class="section agenda" id="agenda">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">01 · Agenda</p>
+        <h2>Prochaines dates</h2>
+      </div>
+      <ol class="events" id="events">
+        <!-- rempli par assets/js/main.js (liste AGENDA) -->
+      </ol>
+      <p class="events__note">Billets et infos de dernière minute sur <a href="https://www.instagram.com/versatyl_marseille/">Instagram</a>.</p>
+    </div>
+  </section>
+
+  <!-- RÉSIDENTS -->
+  <section class="section residents" id="residents">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">02 · DJs résidents</p>
+        <h2>Les résidents</h2>
+        <p class="section__intro">Quatre DJs qui tiennent la courbe des soirées, du premier kick house au dernier bpm hardcore.</p>
+      </div>
+
+      <div class="djs">
+        <article class="dj">
+          <div class="dj__photo">
+            <img src="assets/img/dj-djmx.jpg" alt="DJMX derrière les platines" loading="lazy" width="933" height="1400">
+          </div>
+          <div class="dj__body">
+            <h3 class="dj__name">DJMX</h3>
+            <p class="dj__genres">Hard techno · Schranz · Acid</p>
+            <p>Fondateur du collectif, Jimmy a fait ses armes dans les soirées étudiantes de médecine. À l'affiche d'au moins onze soirées Versatyl, il tient la ligne directrice des line-ups.</p>
+          </div>
+        </article>
+
+        <article class="dj">
+          <div class="dj__photo dj__photo--empty">
+            <img src="assets/img/creature.png" alt="" loading="lazy" width="640" height="533">
+          </div>
+          <div class="dj__body">
+            <h3 class="dj__name">Nofame999</h3>
+            <p class="dj__genres">Hardcore · Indus</p>
+            <p>Il joue en fin de montée, en hardcore et en indus. Il a joué en b2b avec DJMX lors de Versatyl X Absolem, la plus grosse soirée du collectif.</p>
+          </div>
+        </article>
+
+        <article class="dj">
+          <div class="dj__photo dj__photo--empty">
+            <img src="assets/img/creature.png" alt="" loading="lazy" width="640" height="533">
+          </div>
+          <div class="dj__body">
+            <h3 class="dj__name">P!NKY</h3>
+            <p class="dj__genres">Bounce</p>
+            <p>Du bounce, joué en fin de nuit. P!NKY a joué au premier after Versatyl à l'Absolem, le dimanche matin entre 9h30 et 11h.</p>
+          </div>
+        </article>
+
+        <article class="dj">
+          <div class="dj__photo">
+            <img src="assets/img/dj-tiger.jpg" alt="DJ Tiger aux platines" loading="lazy" width="1400" height="932">
+          </div>
+          <div class="dj__body">
+            <h3 class="dj__name">DJ Tiger</h3>
+            <p class="dj__genres">House · Tech house</p>
+            <p>Le côté house des line-ups. DJ Tiger tient la salle house des trois soirées multi-rooms à la Danceteria et a clôturé le premier after à l'Absolem.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMATS -->
+  <section class="section formats" id="formats">
+    <div class="wrap">
+      <div class="section__head section__head--row">
+        <div>
+          <p class="kicker">03 · Formats</p>
+          <h2>Huit formats, une courbe</h2>
+        </div>
+        <p class="section__intro">Chaque lieu a donné naissance à un format, avec sa propre progression musicale.</p>
+      </div>
+    </div>
+    <div class="rail" tabindex="0" aria-label="Formats de soirée, faire défiler horizontalement">
+      <article class="format">
+        <div class="format__media"><img src="assets/img/nucleaire-1.jpg" alt="Soirée Versatyl au Nucléaire, 9 mai 2026" loading="lazy"></div>
+        <p class="format__num">Format 01 · depuis mars 2026</p>
+        <h3>Versatyl au Nucléaire</h3>
+        <p class="format__meta">Bar · Marseille 6e · 100 personnes</p>
+        <p>Le format fondateur. Une montée sur 4 à 5 h, de la trance au hard techno puis à l'indus.</p>
+      </article>
+      <article class="format">
+        <div class="format__media"><img src="assets/img/traverse-1.jpg" alt="Session Versatyl à la Traverse des Balkis, 21 août 2026" loading="lazy"></div>
+        <p class="format__num">Format 02 · depuis mai 2026</p>
+        <h3>Traverse des Balkis</h3>
+        <p class="format__meta">Bar · Marseille 6e · entrée gratuite</p>
+        <p>Sessions de 19h à 1h : trance bouncy, disco et hard bounce, avant de durcir vers la hard techno.</p>
+      </article>
+      <article class="format">
+        <div class="format__media format__media--logo"><img src="assets/img/logo-lilas.svg" alt="" loading="lazy"></div>
+        <p class="format__num">Format 03 · juin 2026</p>
+        <h3>Versatyl à l'Estaminet</h3>
+        <p class="format__meta">Club · Marseille 6e · marathon de 8 h</p>
+        <p>Jusqu'à 8 h de son avec sept DJs, de la trance et du hardgroove au schranz puis à la hard music.</p>
+      </article>
+      <article class="format">
+        <div class="format__media"><img src="assets/img/affiche-manray.jpg" alt="Affiche d'une soirée Versatyl au Manray" loading="lazy"></div>
+        <p class="format__num">Format 04 · depuis juin 2026</p>
+        <h3>Versatyl au Manray</h3>
+        <p class="format__meta">Club · Marseille 1er · « Immersion noire »</p>
+        <p>Le dimanche de 23h à 4h. Basses profondes, rythmes rapides, textures industrielles.</p>
+      </article>
+      <article class="format">
+        <div class="format__media format__media--logo"><img src="assets/img/logo-lilas.svg" alt="" loading="lazy"></div>
+        <p class="format__num">Format 05 · depuis juillet 2026</p>
+        <h3>Versatyl X Danceteria</h3>
+        <p class="format__meta">Club · Marseille 1er · 2 salles · 300 personnes</p>
+        <p>Minuit à 6h. Salle 1 en house, salle 2 de la trance à la hardtechno et à l'indus.</p>
+      </article>
+      <article class="format">
+        <div class="format__media"><img src="assets/img/tout-est-permis-1.jpg" alt="Soirée Tout Est Permis, 21 août 2026" loading="lazy"></div>
+        <p class="format__num">Format 06 · depuis août 2026</p>
+        <h3>Tout Est Permis</h3>
+        <p class="format__meta">Traverse des Balkis · entrée gratuite</p>
+        <p>Sets courts de 30 à 45 min : la soirée change de visage à chaque DJ, du groovy solaire au hardcore.</p>
+      </article>
+      <article class="format">
+        <div class="format__media"><img src="assets/img/affiche-after.jpg" alt="Affiche de l'after Versatyl à l'Absolem du 25 octobre" loading="lazy"></div>
+        <p class="format__num">Format 07 · depuis août 2026</p>
+        <h3>After à l'Absolem</h3>
+        <p class="format__meta">Club · Marseille 2e · dimanche 5h-12h</p>
+        <p>Courbe inversée : on démarre sur la hardtechno et l'acid pour glisser vers le mélodique et le solaire.</p>
+      </article>
+      <article class="format">
+        <div class="format__media format__media--logo"><img src="assets/img/logo-lilas.svg" alt="" loading="lazy"></div>
+        <p class="format__num">Format 08 · septembre 2026</p>
+        <h3>Versatyl X Absolem</h3>
+        <p class="format__meta">Club · Marseille 2e · 400 personnes</p>
+        <p>Le plus gros format du collectif, de la trance à l'indus, avec des artistes qui jouent pour la première fois à Marseille.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- COLLECTIF -->
+  <section class="section collectif" id="collectif">
+    <div class="wrap collectif__grid">
+      <div class="collectif__text">
+        <p class="kicker">04 · Le collectif</p>
+        <h2>Une soirée Versatyl ne finit jamais là où elle a commencé</h2>
+        <p>Versatyl est né à l'initiative de DJMX, alias Jimmy. C'est aujourd'hui une famille de plus de dix personnes qui crée les soirées et développe les projets du collectif.</p>
+        <p>Nos line-ups vont de la house à la hard techno, parfois jusqu'au hardcore dans la même nuit. Nos afters prennent le chemin inverse, de l'acid techno à l'indie dance ou à la minimal. On construit chaque soirée autour d'une énergie et d'une progression, plutôt que d'un style.</p>
+        <p>Au-delà des soirées, on réalise des courts-métrages sur la culture techno, pensés pour les cinémas indépendants du Cours Julien et de Castellane, et on confie nos visuels à des vidéastes, photographes et graphistes locaux.</p>
+        <dl class="stats">
+          <div><dt>Soirées organisées</dt><dd>17</dd></div>
+          <div><dt>Lieux à Marseille</dt><dd>6</dd></div>
+          <div><dt>Formats de soirée</dt><dd>8</dd></div>
+        </dl>
+        <p class="stats__source">De mars à novembre 2026.</p>
+      </div>
+      <div class="collectif__media">
+        <video src="assets/img/logo-chrome.mp4" poster="assets/img/logo-chrome.jpg" autoplay muted loop playsinline aria-label="Animation du logo Versatyl"></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOUTIQUE -->
+  <section class="section boutique" id="boutique">
+    <div class="wrap boutique__grid">
+      <a class="boutique__media" href="https://versatyl.fr/shopping/">
+        <img src="assets/img/tshirt-dos.jpg" alt="Dos du t-shirt Versatyl noir avec la créature violette et rose" loading="lazy" width="1200" height="1200">
+      </a>
+      <div class="boutique__text">
+        <p class="kicker">05 · Boutique</p>
+        <h2>T-shirt Soirée 2026</h2>
+        <p>Édition limitée, produite uniquement à partir des précommandes. Nos collections sont pensées dans une démarche de production éthique : on fabrique ce qui est commandé, rien de plus.</p>
+        <p class="boutique__price">25 €</p>
+        <a class="btn" href="https://versatyl.fr/shopping/">Précommander</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section class="section galerie" id="galerie">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">06 · Galerie</p>
+        <h2>Dans la fosse</h2>
+      </div>
+      <div class="gallery">
+        <figure class="gallery__item gallery__item--wide"><img src="assets/img/nucleaire-1.jpg" alt="La foule au Nucléaire" loading="lazy"><figcaption>Nucléaire · 09.05</figcaption></figure>
+        <figure class="gallery__item gallery__item--tall"><img src="assets/img/boutique-hero.jpg" alt="Deux DJs aux platines sous des néons roses" loading="lazy"></figure>
+        <figure class="gallery__item"><img src="assets/img/traverse-1.jpg" alt="DJ à la Traverse des Balkis" loading="lazy"><figcaption>Traverse des Balkis · 21.08</figcaption></figure>
+        <figure class="gallery__item"><img src="assets/img/tout-est-permis-1.jpg" alt="Lumières violettes à Tout Est Permis" loading="lazy"><figcaption>Tout Est Permis · 21.08</figcaption></figure>
+        <figure class="gallery__item"><img src="assets/img/dj-djmx.jpg" alt="DJMX en set" loading="lazy"><figcaption>DJMX</figcaption></figure>
+        <figure class="gallery__item"><img src="assets/img/affiche-after.jpg" alt="Affiche de l'after Versatyl à l'Absolem" loading="lazy"><figcaption>After · Absolem</figcaption></figure>
+        <figure class="gallery__item gallery__item--wide"><img src="assets/img/nucleaire-2.jpg" alt="Le public au Nucléaire" loading="lazy"><figcaption>Nucléaire · 09.05</figcaption></figure>
+        <figure class="gallery__item gallery__item--wide"><img src="assets/img/dj-tiger-2.jpg" alt="DJ Tiger en set" loading="lazy"><figcaption>DJ Tiger</figcaption></figure>
+      </div>
+      <p class="gallery__credit">Photos réalisées par des photographes marseillais. Aucune image générée par IA.</p>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENTS -->
+  <section class="section engagements" id="engagements">
+    <div class="wrap engagements__grid">
+      <div>
+        <p class="kicker">07 · Engagements</p>
+        <h2>La fête, en sécurité</h2>
+      </div>
+      <ul class="engagements__list">
+        <li><strong>Violences sexistes et sexuelles.</strong> Tolérance zéro. Si tu te sens en danger ou si tu es témoin, va voir l'équipe Versatyl ou le staff du lieu : on agit tout de suite.</li>
+        <li><strong>Violences psychologiques.</strong> Dans nos soirées comme dans le collectif, le respect de chacun passe avant tout.</li>
+        <li><strong>Consommations.</strong> On lutte contre les consommations excessives et les usages à risque. Hydrate-toi, fais des pauses, prends soin des autres.</li>
+        <li><strong>Création humaine.</strong> Affiches, photos, vidéos : nos contenus sont faits par des artistes locaux, pas par une IA.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <img class="footer__logo" src="assets/img/logo-lilas.svg" alt="Versatyl" width="593" height="250" loading="lazy">
+    <div class="footer__grid">
+      <div>
+        <p class="footer__title">Contact</p>
+        <p>Booking, partenariat, collaboration artistique ou soirée dans votre lieu :</p>
+        <p><a href="mailto:versatyl.marseille@gmail.com">versatyl.marseille@gmail.com</a></p>
+      </div>
+      <div>
+        <p class="footer__title">Suivre</p>
+        <p><a href="https://www.instagram.com/versatyl_marseille/">Instagram · @versatyl_marseille</a></p>
+      </div>
+      <div>
+        <p class="footer__title">Boutique</p>
+        <p><a href="https://versatyl.fr/shopping/">T-shirt Soirée 2026</a></p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>Versatyl Marseille · association loi 1901</p>
+      <p><a href="mentions-legales.html">Mentions légales et confidentialité</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
