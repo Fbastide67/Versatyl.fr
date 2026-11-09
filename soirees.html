@@ -14,8 +14,8 @@
   <meta property="og:image" content="https://versatyl.fr/assets/img/og.jpg">
   <link rel="preload" href="assets/fonts/Redband-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/GoodTimesRg-Bold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=10">
-  <link rel="stylesheet" href="css/soirees.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/soirees.css?v=7">
 </head>
 <body class="page page--soirees">
 
@@ -109,7 +109,7 @@
     </div>
 
     <div class="up-grid">
-      <article class="up-card up-card--next" data-date="2026-11-20" data-cursor="Soirée">
+      <article class="up-card up-card--next" id="date-2026-11-20" data-date="2026-11-20" data-cursor="Soirée">
         <div class="up-top">
           <span class="up-badge">Prochaine date</span>
           <span class="up-count"></span>
@@ -130,7 +130,7 @@
         </div>
       </article>
 
-      <article class="up-card" data-date="2026-12-04" data-cursor="Soirée">
+      <article class="up-card" id="date-2026-12-04" data-date="2026-12-04" data-cursor="Soirée">
         <div class="up-top">
           <span class="up-place">Florida Palace</span>
           <span class="up-count"></span>
@@ -151,7 +151,7 @@
         </div>
       </article>
 
-      <article class="up-card" data-date="2026-12-12" data-cursor="Soirée">
+      <article class="up-card" id="date-2026-12-12" data-date="2026-12-12" data-cursor="Soirée">
         <div class="up-top">
           <span class="up-place">L'Estaminet</span>
           <span class="up-count"></span>
@@ -172,7 +172,7 @@
         </div>
       </article>
 
-      <article class="up-card" data-date="2027-01-08" data-cursor="Soirée">
+      <article class="up-card" id="date-2027-01-08" data-date="2027-01-08" data-cursor="Soirée">
         <div class="up-top">
           <span class="up-place">Absolem</span>
           <span class="up-count"></span>
@@ -195,208 +195,17 @@
     </div>
   </section>
 
-  <!-- ============ NOS FORMATS ============ -->
-  <section class="sv-formats" id="formats">
-    <div class="section-head">
-      <h2 class="h-display sv-h2 reveal">Nos formats</h2>
-      <p class="section-sub">8 formats · 6 lieux · Marseille 1er, 2e, 6e</p>
-    </div>
-
-    <div class="fmt-list">
-      <!-- 01 -->
-      <details class="fmt" name="formats" open>
-        <summary class="fmt-sum" data-cursor="Ouvrir">
-          <span class="fmt-num">01</span>
-          <span class="fmt-name"><span aria-hidden="true">Nucleaire</span><span class="sr-only">Le Nucléaire</span></span>
-          <span class="fmt-meta">Bar · 6e · 100 pers.</span>
-          <span class="fmt-ico" aria-hidden="true"></span>
-        </summary>
-        <div class="fmt-body">
-          <dl class="fmt-facts">
-            <div><dt>Lieu</dt><dd>Le Nucléaire, bar, Marseille 6e</dd></div>
-            <div><dt>Jauge</dt><dd>100 personnes</dd></div>
-            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Trance</li><li>Hard techno</li><li>Indus</li></ol></dd></div>
-            <div class="fmt-wide"><dt>Premier line-up</dt><dd>Okram, Fefoz, DJMX, Nofame</dd></div>
-            <div class="fmt-wide"><dt>3 éditions</dt><dd><ul class="fmt-dates"><li>13.03.26</li><li>09.05.26</li><li>13.06.26</li></ul></dd></div>
-          </dl>
-          <div class="fmt-media">
-            <figure><img src="assets/img/affiches/affiche-premiere-soiree-nucleaire-13mars.jpg" width="750" height="800" alt="Affiche de la première soirée Versatyl au Nucléaire, 13 mars 2026" loading="lazy" decoding="async"><figcaption>13.03 · Première</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-acte2-nucleaire-9mai.jpg" width="640" height="800" alt="Affiche Nucléaire Acte II, 9 mai 2026" loading="lazy" decoding="async"><figcaption>09.05 · Acte II</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-nucleaire-acte3.jpg" width="640" height="800" alt="Affiche Nucléaire Acte III, 13 juin 2026" loading="lazy" decoding="async"><figcaption>13.06 · Acte III</figcaption></figure>
-          </div>
-        </div>
-      </details>
-
-      <!-- 02 -->
-      <details class="fmt" name="formats">
-        <summary class="fmt-sum" data-cursor="Ouvrir">
-          <span class="fmt-num">02</span>
-          <span class="fmt-name">La Traverse des Balkis</span>
-          <span class="fmt-meta">Bar · 6e · 120 pers.</span>
-          <span class="fmt-ico" aria-hidden="true"></span>
-        </summary>
-        <div class="fmt-body">
-          <dl class="fmt-facts">
-            <div><dt>Lieu</dt><dd>La Traverse des Balkis, bar, Marseille 6e</dd></div>
-            <div><dt>Jauge</dt><dd>120 personnes · entrée libre</dd></div>
-            <div><dt>Horaires</dt><dd>19h–1h</dd></div>
-            <div><dt>Acte III</dt><dd>89 intéressés sur Shotgun</dd></div>
-            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Trance bouncy</li><li>Disco</li><li>Hard bounce</li><li>Hard techno</li></ol></dd></div>
-            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>21.05.26</li><li>09.07.26</li><li>31.07.26</li></ul></dd></div>
-          </dl>
-          <div class="fmt-media">
-            <figure><img src="assets/img/affiches/affiche-acte3-traverse-21mai.jpg" width="640" height="800" alt="Affiche Acte III à La Traverse des Balkis, 21 mai 2026" loading="lazy" decoding="async"><figcaption>21.05 · Acte III</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-traverse-balkis-9juil-papillon.jpg" width="640" height="800" alt="Affiche La Traverse des Balkis, 9 juillet 2026" loading="lazy" decoding="async"><figcaption>09.07</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-traverse-balkis-31juil.jpg" width="640" height="800" alt="Affiche La Traverse des Balkis, 31 juillet 2026" loading="lazy" decoding="async"><figcaption>31.07</figcaption></figure>
-          </div>
-        </div>
-      </details>
-
-      <!-- 03 -->
-      <details class="fmt" name="formats">
-        <summary class="fmt-sum" data-cursor="Ouvrir">
-          <span class="fmt-num">03</span>
-          <span class="fmt-name">L'Estaminet</span>
-          <span class="fmt-meta">Club · 6e · 100 pers.</span>
-          <span class="fmt-ico" aria-hidden="true"></span>
-        </summary>
-        <div class="fmt-body">
-          <dl class="fmt-facts">
-            <div><dt>Lieu</dt><dd>L'Estaminet, club, Marseille 6e</dd></div>
-            <div><dt>Jauge</dt><dd>100 personnes</dd></div>
-            <div class="fmt-wide"><dt>Le concept</dt><dd>Un marathon jusqu'à 8h.</dd></div>
-            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Trance / hardgroove</li><li>Hard techno / schranz</li><li>Hard music</li></ol></dd></div>
-            <div class="fmt-wide"><dt>Line-up</dt><dd>DJMX, Ematrikx, Fefoz, Ma6tek, Nofame, Philiot, Rodin</dd></div>
-            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>24.06.26</li><li class="is-next"><a data-pop href="#a-venir">12.12.26 · bounce</a></li></ul></dd></div>
-          </dl>
-          <div class="fmt-media">
-            <figure><img src="assets/img/affiches/affiche-estaminet-24juin.jpg" width="640" height="800" alt="Affiche Versatyl à l'Estaminet, 24 juin 2026" loading="lazy" decoding="async"><figcaption>24.06</figcaption></figure>
-          </div>
-        </div>
-      </details>
-
-      <!-- 04 -->
-      <details class="fmt" name="formats">
-        <summary class="fmt-sum" data-cursor="Ouvrir">
-          <span class="fmt-num">04</span>
-          <span class="fmt-name">Manray</span>
-          <span class="fmt-meta">Club · 1er · 100 pers.</span>
-          <span class="fmt-ico" aria-hidden="true"></span>
-        </summary>
-        <div class="fmt-body">
-          <dl class="fmt-facts">
-            <div><dt>Lieu</dt><dd>Manray, club, Marseille 1er</dd></div>
-            <div><dt>Jauge</dt><dd>100 personnes</dd></div>
-            <div><dt>Horaires</dt><dd>Le dimanche, 23h–4h</dd></div>
-            <div><dt>Ambiance</dt><dd>« Immersion noire »</dd></div>
-            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Hard groove</li><li>Hard bounce</li><li>Hard techno</li></ol></dd></div>
-            <div class="fmt-wide"><dt>Line-up</dt><dd>VOXPOP, DJMX, DigiOxy, puis DJMX et ØKLM</dd></div>
-            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>28.06.26 · L'Immersion Noire</li><li>19.07.26 · Techno Vibes</li></ul></dd></div>
-          </dl>
-          <div class="fmt-media">
-            <figure><img src="assets/img/affiches/affiche-manray-immersion-noire.jpg" width="640" height="800" alt="Affiche L'Immersion Noire au Manray, 28 juin 2026" loading="lazy" decoding="async"><figcaption>28.06</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-manray-after-coupe-du-monde.jpg" width="640" height="800" alt="Affiche After Coupe du Monde au Manray, 19 juillet 2026" loading="lazy" decoding="async"><figcaption>19.07</figcaption></figure>
-          </div>
-        </div>
-      </details>
-
-      <!-- 05 -->
-      <details class="fmt" name="formats">
-        <summary class="fmt-sum" data-cursor="Ouvrir">
-          <span class="fmt-num">05</span>
-          <span class="fmt-name">Danceteria</span>
-          <span class="fmt-meta">Club · 1er · 300 pers.</span>
-          <span class="fmt-ico" aria-hidden="true"></span>
-        </summary>
-        <div class="fmt-body">
-          <dl class="fmt-facts">
-            <div><dt>Lieu</dt><dd>Danceteria, club, Marseille 1er</dd></div>
-            <div><dt>Jauge</dt><dd>300 personnes · 2 salles</dd></div>
-            <div><dt>Horaires</dt><dd>0h–6h</dd></div>
-            <div><dt>Salle 1</dt><dd>House, tenue par DJ Tiger</dd></div>
-            <div class="fmt-wide"><dt>Salle 2</dt><dd><ol class="fmt-curve"><li>Trance</li><li>Techno</li><li>Hardtechno / indus</li></ol></dd></div>
-            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>16.07.26</li><li>13.08.26</li><li>03.09.26</li></ul></dd></div>
-          </dl>
-          <div class="fmt-media">
-            <figure class="fmt-clip"><video muted playsinline loop preload="none" poster="assets/video/danceteria-2.jpg" data-src="assets/video/danceteria-2.mp4" width="640" height="1138" aria-label="Extrait vidéo d'une soirée Danceteria"></video><figcaption>Live · Danceteria</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-danceteria-16juil.jpg" width="640" height="800" alt="Affiche Danceteria, première multi-rooms, 16 juillet 2026" loading="lazy" decoding="async"><figcaption>16.07</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-danceteria-le-retour-13aout.jpg" width="640" height="800" alt="Affiche Danceteria : Le Retour, 13 août 2026" loading="lazy" decoding="async"><figcaption>13.08 · Le Retour</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-danceteria-chapitre3.jpg" width="640" height="800" alt="Affiche Danceteria : Chapitre 3, 3 septembre 2026" loading="lazy" decoding="async"><figcaption>03.09 · Chapitre 3</figcaption></figure>
-          </div>
-        </div>
-      </details>
-
-      <!-- 06 -->
-      <details class="fmt" name="formats">
-        <summary class="fmt-sum" data-cursor="Ouvrir">
-          <span class="fmt-num">06</span>
-          <span class="fmt-name">Tout est permis</span>
-          <span class="fmt-meta">Traverse · 6e · 120 pers.</span>
-          <span class="fmt-ico" aria-hidden="true"></span>
-        </summary>
-        <div class="fmt-body">
-          <dl class="fmt-facts">
-            <div><dt>Lieu</dt><dd>La Traverse des Balkis, Marseille 6e</dd></div>
-            <div><dt>Jauge</dt><dd>120 personnes · entrée libre</dd></div>
-            <div class="fmt-wide"><dt>Le concept</dt><dd>Des sets courts de 30 à 45&nbsp;min.</dd></div>
-            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Groovy solaire</li><li>Hard techno</li><li>Indus</li><li>Hardcore</li></ol></dd></div>
-            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>21.08.26</li><li>12.09.26</li><li class="is-next"><a data-pop href="#a-venir">20.11.26 · prochaine</a></li></ul></dd></div>
-          </dl>
-          <div class="fmt-media">
-            <figure><img src="assets/img/affiches/_affiche-tout-est-permis-1-rose.jpg" width="640" height="800" alt="Affiche Tout est permis, 21 août 2026" loading="lazy" decoding="async"><figcaption>21.08</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-tout-est-permis-2.jpg" width="640" height="800" alt="Affiche Tout est permis², 12 septembre 2026" loading="lazy" decoding="async"><figcaption>12.09</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-lineup-tout-est-permis-2.jpg" width="640" height="800" alt="Line-up de Tout est permis², 12 septembre 2026" loading="lazy" decoding="async"><figcaption>12.09 · Line-up</figcaption></figure>
-          </div>
-        </div>
-      </details>
-
-      <!-- 07 -->
-      <details class="fmt" name="formats">
-        <summary class="fmt-sum" data-cursor="Ouvrir">
-          <span class="fmt-num">07</span>
-          <span class="fmt-name">After Absolem</span>
-          <span class="fmt-meta">Club · 2e · 400 pers.</span>
-          <span class="fmt-ico" aria-hidden="true"></span>
-        </summary>
-        <div class="fmt-body">
-          <dl class="fmt-facts">
-            <div><dt>Lieu</dt><dd>Absolem, club, Marseille 2e</dd></div>
-            <div><dt>Jauge</dt><dd>400 personnes</dd></div>
-            <div><dt>Horaires</dt><dd>5h–12h</dd></div>
-            <div><dt>Le concept</dt><dd>La courbe inversée</dd></div>
-            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve fmt-curve--down"><li>Hardtechno / acid</li><li>Mélodique</li><li>Hypnotique</li><li>Solaire</li></ol></dd></div>
-            <div class="fmt-wide"><dt>Premier after</dt><dd>FLVØ, Leko, Anthony Capaldi, P!NKY, DJ Tiger</dd></div>
-            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>30.08.26</li><li><a data-pop href="https://shotgun.live/fr/events/after-versatyl-absolem-2" target="_blank" rel="noopener">25.10.26 <span aria-hidden="true">↗</span></a></li><li><a data-pop href="https://shotgun.live/fr/events/after-versatyl-absolem-3" target="_blank" rel="noopener">07.11.26 <span aria-hidden="true">↗</span></a></li></ul></dd></div>
-          </dl>
-          <div class="fmt-media">
-            <figure class="fmt-clip"><video muted playsinline loop preload="none" poster="assets/video/absolem-3.jpg" data-src="assets/video/absolem-3.mp4" width="640" height="1138" aria-label="Extrait vidéo d'un after à l'Absolem"></video><figcaption>Live · Absolem</figcaption></figure>
-            <figure><img src="assets/img/affiches/affiche-after-party-30aout.jpg" width="640" height="800" alt="Affiche After Party à l'Absolem, 30 août 2026" loading="lazy" decoding="async"><figcaption>30.08 · Premier after</figcaption></figure>
-            <figure><a href="https://shotgun.live/fr/events/after-versatyl-absolem-2" target="_blank" rel="noopener" data-cursor="Shotgun"><img src="assets/img/affiches/after-party-absolem_affiche.jpg" width="648" height="800" alt="Affiche After Party Absolem 2, 25 octobre 2026 (page Shotgun)" loading="lazy" decoding="async"></a><figcaption>25.10 · After #2</figcaption></figure>
-          </div>
-        </div>
-      </details>
-
-      <!-- 08 -->
-      <details class="fmt" name="formats">
-        <summary class="fmt-sum" data-cursor="Ouvrir">
-          <span class="fmt-num">08</span>
-          <span class="fmt-name">Versatyl x Absolem</span>
-          <span class="fmt-meta">Club · 2e · 400 pers.</span>
-          <span class="fmt-ico" aria-hidden="true"></span>
-        </summary>
-        <div class="fmt-body">
-          <dl class="fmt-facts">
-            <div><dt>Lieu</dt><dd>Absolem, club, Marseille 2e</dd></div>
-            <div><dt>Jauge</dt><dd>400 personnes</dd></div>
-            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Trance</li><li>Indus</li></ol></dd></div>
-            <div class="fmt-wide"><dt>Line-up</dt><dd>Zadix, Les Garçons Pleurent, Djoga, DJMX b2b Nofame, Tetris, Fefoz</dd></div>
-            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li><a data-pop href="https://shotgun.live/fr/events/versatyl-x-absolem" target="_blank" rel="noopener">24.09.26 <span aria-hidden="true">↗</span></a></li><li class="is-next"><a data-pop href="#a-venir">08.01.27 · soirée + after, 14&nbsp;h</a></li></ul></dd></div>
-          </dl>
-          <div class="fmt-media">
-            <figure><a href="https://shotgun.live/fr/events/versatyl-x-absolem" target="_blank" rel="noopener" data-cursor="Shotgun"><img src="assets/img/affiches/affiche-absolem-24sept.jpg" width="642" height="800" alt="Affiche Versatyl x L'Absolem, 24 septembre 2026 (page Shotgun)" loading="lazy" decoding="async"></a><figcaption>24.09</figcaption></figure>
-          </div>
-        </div>
-      </details>
+  <!-- ============ KNOW IT FIRST ============ -->
+  <section class="sv-cta">
+    <img class="sv-cta-bat" src="assets/img/chauve-souris.png" width="656" height="371" alt="" loading="lazy" decoding="async">
+    <div class="sv-cta-inner">
+      <span class="hud-label"><span class="hud-chev">›››</span> Versatyl // Infos</span>
+      <h2 class="sv-cta-title reveal">Know it first</h2>
+      <p class="lead">Line-ups, affiches et dates tombent d'abord sur Instagram. Les places, elles, partent sur Shotgun.</p>
+      <div class="section-actions">
+        <a class="btn" data-insta href="#" target="_blank" rel="noopener">Suivre sur Instagram <span aria-hidden="true">↗</span></a>
+        <a class="btn btn--fuchsia" data-shotgun href="#" target="_blank" rel="noopener">Billetterie Shotgun <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
   </section>
 
@@ -410,39 +219,6 @@
       <figure class="sv-clip reveal"><video muted playsinline loop preload="none" poster="assets/video/soirees/absolem-24-foule.jpg" data-src="assets/video/soirees/absolem-24-foule.mp4" width="1280" height="720" aria-label="La foule de l'Absolem pendant la soirée du 24 septembre"></video><figcaption>Le dancefloor</figcaption></figure>
       <figure class="sv-clip reveal"><video muted playsinline loop preload="none" poster="assets/video/soirees/absolem-24-b2b.jpg" data-src="assets/video/soirees/absolem-24-b2b.mp4" width="1280" height="720" aria-label="DJMX en b2b à l'Absolem, le 24 septembre"></video><figcaption>DJMX en b2b</figcaption></figure>
       <figure class="sv-clip reveal"><video muted playsinline loop preload="none" poster="assets/video/soirees/absolem-24-cabine.jpg" data-src="assets/video/soirees/absolem-24-cabine.mp4" width="1280" height="720" aria-label="La cabine de l'Absolem et le public, le 24 septembre"></video><figcaption>La cabine</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- ============ L'EXPÉRIENCE ÉVOLUTIVE ============ -->
-  <section class="sv-curve" id="experience">
-    <div class="section-head">
-      <h2 class="h-display sv-h2 reveal" aria-label="L'expérience évolutive">L'experience evolutive</h2>
-      <p class="lead reveal">«&nbsp;Nous construisons nos line-ups autour d'une énergie et d'une progression musicale, plutôt que d'un style.&nbsp;» La soirée monte sans pitié. L'after prend le chemin inverse.</p>
-    </div>
-
-    <div class="curve-wrap">
-      <figure class="curve curve--night reveal">
-        <figcaption><span class="kicker">La soirée</span><b>Ça monte <span aria-hidden="true">↗</span></b></figcaption>
-        <ol class="curve-bars" aria-label="Progression d'une soirée, de la house au hardcore">
-          <li style="--h:.2;--i:0"><span class="curve-bar"></span><span class="curve-lbl">House</span></li>
-          <li style="--h:.32;--i:1"><span class="curve-bar"></span><span class="curve-lbl">Trance</span></li>
-          <li style="--h:.44;--i:2"><span class="curve-bar"></span><span class="curve-lbl">Hardgroove</span></li>
-          <li style="--h:.56;--i:3"><span class="curve-bar"></span><span class="curve-lbl">Techno</span></li>
-          <li style="--h:.7;--i:4"><span class="curve-bar"></span><span class="curve-lbl">Hard techno</span></li>
-          <li style="--h:.84;--i:5"><span class="curve-bar"></span><span class="curve-lbl">Indus</span></li>
-          <li style="--h:1;--i:6"><span class="curve-bar"></span><span class="curve-lbl">Hardcore</span></li>
-        </ol>
-      </figure>
-      <figure class="curve curve--after reveal">
-        <figcaption><span class="kicker">L'after</span><b>Ça redescend <span aria-hidden="true">↘</span></b></figcaption>
-        <ol class="curve-bars" aria-label="Progression d'un after, de l'acid à l'indie dance et la minimal">
-          <li style="--h:1;--i:0"><span class="curve-bar"></span><span class="curve-lbl">Acid</span></li>
-          <li style="--h:.82;--i:1"><span class="curve-bar"></span><span class="curve-lbl">Hardtechno</span></li>
-          <li style="--h:.62;--i:2"><span class="curve-bar"></span><span class="curve-lbl">Mélodique</span></li>
-          <li style="--h:.44;--i:3"><span class="curve-bar"></span><span class="curve-lbl">Hypnotique</span></li>
-          <li style="--h:.28;--i:4"><span class="curve-bar"></span><span class="curve-lbl">Indie dance / Minimal</span></li>
-        </ol>
-      </figure>
     </div>
   </section>
 
@@ -599,17 +375,208 @@
     <p class="arch-empty" hidden>Rien ici pour l'instant.</p>
   </section>
 
-  <!-- ============ KNOW IT FIRST ============ -->
-  <section class="sv-cta">
-    <img class="sv-cta-bat" src="assets/img/chauve-souris.png" width="656" height="371" alt="" loading="lazy" decoding="async">
-    <div class="sv-cta-inner">
-      <span class="hud-label"><span class="hud-chev">›››</span> Versatyl // Infos</span>
-      <h2 class="sv-cta-title reveal">Know it first</h2>
-      <p class="lead">Line-ups, affiches et dates tombent d'abord sur Instagram. Les places, elles, partent sur Shotgun.</p>
-      <div class="section-actions">
-        <a class="btn" data-insta href="#" target="_blank" rel="noopener">Suivre sur Instagram <span aria-hidden="true">↗</span></a>
-        <a class="btn btn--fuchsia" data-shotgun href="#" target="_blank" rel="noopener">Billetterie Shotgun <span aria-hidden="true">↗</span></a>
-      </div>
+  <!-- ============ NOS FORMATS ============ -->
+  <section class="sv-formats" id="formats">
+    <div class="section-head">
+      <h2 class="h-display sv-h2 reveal">Nos formats</h2>
+      <p class="section-sub">8 formats · 6 lieux · Marseille 1er, 2e, 6e</p>
+    </div>
+
+    <div class="fmt-list">
+      <!-- 01 -->
+      <details class="fmt" name="formats" open>
+        <summary class="fmt-sum" data-cursor="Ouvrir">
+          <span class="fmt-num">01</span>
+          <span class="fmt-name">Versatyl x Absolem</span>
+          <span class="fmt-meta">Club · 2e · 400 pers.</span>
+          <span class="fmt-ico" aria-hidden="true"></span>
+        </summary>
+        <div class="fmt-body">
+          <dl class="fmt-facts">
+            <div><dt>Lieu</dt><dd>Absolem, club, Marseille 2e</dd></div>
+            <div><dt>Jauge</dt><dd>400 personnes</dd></div>
+            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Trance</li><li>Indus</li></ol></dd></div>
+            <div class="fmt-wide"><dt>Line-up</dt><dd>Zadix, Les Garçons Pleurent, Djoga, DJMX b2b Nofame, Tetris, Fefoz</dd></div>
+            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li><a data-pop href="https://shotgun.live/fr/events/versatyl-x-absolem" target="_blank" rel="noopener">24.09.26 <span aria-hidden="true">↗</span></a></li><li class="is-next"><a data-pop href="#a-venir">08.01.27 · soirée + after, 14&nbsp;h</a></li></ul></dd></div>
+          </dl>
+          <div class="fmt-media">
+            <figure><a href="https://shotgun.live/fr/events/versatyl-x-absolem" target="_blank" rel="noopener" data-cursor="Shotgun"><img src="assets/img/affiches/affiche-absolem-24sept.jpg" width="642" height="800" alt="Affiche Versatyl x L'Absolem, 24 septembre 2026 (page Shotgun)" loading="lazy" decoding="async"></a><figcaption>24.09</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- 02 -->
+      <details class="fmt" name="formats">
+        <summary class="fmt-sum" data-cursor="Ouvrir">
+          <span class="fmt-num">02</span>
+          <span class="fmt-name">After Absolem</span>
+          <span class="fmt-meta">Club · 2e · 400 pers.</span>
+          <span class="fmt-ico" aria-hidden="true"></span>
+        </summary>
+        <div class="fmt-body">
+          <dl class="fmt-facts">
+            <div><dt>Lieu</dt><dd>Absolem, club, Marseille 2e</dd></div>
+            <div><dt>Jauge</dt><dd>400 personnes</dd></div>
+            <div><dt>Horaires</dt><dd>5h–12h</dd></div>
+            <div><dt>Le concept</dt><dd>La courbe inversée</dd></div>
+            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve fmt-curve--down"><li>Hardtechno / acid</li><li>Mélodique</li><li>Hypnotique</li><li>Solaire</li></ol></dd></div>
+            <div class="fmt-wide"><dt>Premier after</dt><dd>FLVØ, Leko, Anthony Capaldi, P!NKY, DJ Tiger</dd></div>
+            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>30.08.26</li><li><a data-pop href="https://shotgun.live/fr/events/after-versatyl-absolem-2" target="_blank" rel="noopener">25.10.26 <span aria-hidden="true">↗</span></a></li><li><a data-pop href="https://shotgun.live/fr/events/after-versatyl-absolem-3" target="_blank" rel="noopener">07.11.26 <span aria-hidden="true">↗</span></a></li></ul></dd></div>
+          </dl>
+          <div class="fmt-media">
+            <figure class="fmt-clip"><video muted playsinline loop preload="none" poster="assets/video/absolem-3.jpg" data-src="assets/video/absolem-3.mp4" width="640" height="1138" aria-label="Extrait vidéo d'un after à l'Absolem"></video><figcaption>Live · Absolem</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-after-party-30aout.jpg" width="640" height="800" alt="Affiche After Party à l'Absolem, 30 août 2026" loading="lazy" decoding="async"><figcaption>30.08 · Premier after</figcaption></figure>
+            <figure><a href="https://shotgun.live/fr/events/after-versatyl-absolem-2" target="_blank" rel="noopener" data-cursor="Shotgun"><img src="assets/img/affiches/after-party-absolem_affiche.jpg" width="648" height="800" alt="Affiche After Party Absolem 2, 25 octobre 2026 (page Shotgun)" loading="lazy" decoding="async"></a><figcaption>25.10 · After #2</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- 03 -->
+      <details class="fmt" name="formats">
+        <summary class="fmt-sum" data-cursor="Ouvrir">
+          <span class="fmt-num">03</span>
+          <span class="fmt-name">Tout est permis</span>
+          <span class="fmt-meta">Traverse · 6e · 120 pers.</span>
+          <span class="fmt-ico" aria-hidden="true"></span>
+        </summary>
+        <div class="fmt-body">
+          <dl class="fmt-facts">
+            <div><dt>Lieu</dt><dd>La Traverse des Balkis, Marseille 6e</dd></div>
+            <div><dt>Jauge</dt><dd>120 personnes · entrée libre</dd></div>
+            <div class="fmt-wide"><dt>Le concept</dt><dd>Des sets courts de 30 à 45&nbsp;min.</dd></div>
+            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Groovy solaire</li><li>Hard techno</li><li>Indus</li><li>Hardcore</li></ol></dd></div>
+            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>21.08.26</li><li>12.09.26</li><li class="is-next"><a data-pop href="#a-venir">20.11.26 · prochaine</a></li></ul></dd></div>
+          </dl>
+          <div class="fmt-media">
+            <figure><img src="assets/img/affiches/_affiche-tout-est-permis-1-rose.jpg" width="640" height="800" alt="Affiche Tout est permis, 21 août 2026" loading="lazy" decoding="async"><figcaption>21.08</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-tout-est-permis-2.jpg" width="640" height="800" alt="Affiche Tout est permis², 12 septembre 2026" loading="lazy" decoding="async"><figcaption>12.09</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-lineup-tout-est-permis-2.jpg" width="640" height="800" alt="Line-up de Tout est permis², 12 septembre 2026" loading="lazy" decoding="async"><figcaption>12.09 · Line-up</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- 04 -->
+      <details class="fmt" name="formats">
+        <summary class="fmt-sum" data-cursor="Ouvrir">
+          <span class="fmt-num">04</span>
+          <span class="fmt-name">Danceteria</span>
+          <span class="fmt-meta">Club · 1er · 300 pers.</span>
+          <span class="fmt-ico" aria-hidden="true"></span>
+        </summary>
+        <div class="fmt-body">
+          <dl class="fmt-facts">
+            <div><dt>Lieu</dt><dd>Danceteria, club, Marseille 1er</dd></div>
+            <div><dt>Jauge</dt><dd>300 personnes · 2 salles</dd></div>
+            <div><dt>Horaires</dt><dd>0h–6h</dd></div>
+            <div><dt>Salle 1</dt><dd>House, tenue par DJ Tiger</dd></div>
+            <div class="fmt-wide"><dt>Salle 2</dt><dd><ol class="fmt-curve"><li>Trance</li><li>Techno</li><li>Hardtechno / indus</li></ol></dd></div>
+            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>16.07.26</li><li>13.08.26</li><li>03.09.26</li></ul></dd></div>
+          </dl>
+          <div class="fmt-media">
+            <figure class="fmt-clip"><video muted playsinline loop preload="none" poster="assets/video/danceteria-2.jpg" data-src="assets/video/danceteria-2.mp4" width="640" height="1138" aria-label="Extrait vidéo d'une soirée Danceteria"></video><figcaption>Live · Danceteria</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-danceteria-16juil.jpg" width="640" height="800" alt="Affiche Danceteria, première multi-rooms, 16 juillet 2026" loading="lazy" decoding="async"><figcaption>16.07</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-danceteria-le-retour-13aout.jpg" width="640" height="800" alt="Affiche Danceteria : Le Retour, 13 août 2026" loading="lazy" decoding="async"><figcaption>13.08 · Le Retour</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-danceteria-chapitre3.jpg" width="640" height="800" alt="Affiche Danceteria : Chapitre 3, 3 septembre 2026" loading="lazy" decoding="async"><figcaption>03.09 · Chapitre 3</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- 05 -->
+      <details class="fmt" name="formats">
+        <summary class="fmt-sum" data-cursor="Ouvrir">
+          <span class="fmt-num">05</span>
+          <span class="fmt-name">Manray</span>
+          <span class="fmt-meta">Club · 1er · 100 pers.</span>
+          <span class="fmt-ico" aria-hidden="true"></span>
+        </summary>
+        <div class="fmt-body">
+          <dl class="fmt-facts">
+            <div><dt>Lieu</dt><dd>Manray, club, Marseille 1er</dd></div>
+            <div><dt>Jauge</dt><dd>100 personnes</dd></div>
+            <div><dt>Horaires</dt><dd>Le dimanche, 23h–4h</dd></div>
+            <div><dt>Ambiance</dt><dd>« Immersion noire »</dd></div>
+            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Hard groove</li><li>Hard bounce</li><li>Hard techno</li></ol></dd></div>
+            <div class="fmt-wide"><dt>Line-up</dt><dd>VOXPOP, DJMX, DigiOxy, puis DJMX et ØKLM</dd></div>
+            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>28.06.26 · L'Immersion Noire</li><li>19.07.26 · Techno Vibes</li></ul></dd></div>
+          </dl>
+          <div class="fmt-media">
+            <figure><img src="assets/img/affiches/affiche-manray-immersion-noire.jpg" width="640" height="800" alt="Affiche L'Immersion Noire au Manray, 28 juin 2026" loading="lazy" decoding="async"><figcaption>28.06</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-manray-after-coupe-du-monde.jpg" width="640" height="800" alt="Affiche After Coupe du Monde au Manray, 19 juillet 2026" loading="lazy" decoding="async"><figcaption>19.07</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- 06 -->
+      <details class="fmt" name="formats">
+        <summary class="fmt-sum" data-cursor="Ouvrir">
+          <span class="fmt-num">06</span>
+          <span class="fmt-name">L'Estaminet</span>
+          <span class="fmt-meta">Club · 6e · 100 pers.</span>
+          <span class="fmt-ico" aria-hidden="true"></span>
+        </summary>
+        <div class="fmt-body">
+          <dl class="fmt-facts">
+            <div><dt>Lieu</dt><dd>L'Estaminet, club, Marseille 6e</dd></div>
+            <div><dt>Jauge</dt><dd>100 personnes</dd></div>
+            <div class="fmt-wide"><dt>Le concept</dt><dd>Un marathon jusqu'à 8h.</dd></div>
+            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Trance / hardgroove</li><li>Hard techno / schranz</li><li>Hard music</li></ol></dd></div>
+            <div class="fmt-wide"><dt>Line-up</dt><dd>DJMX, Ematrikx, Fefoz, Ma6tek, Nofame, Philiot, Rodin</dd></div>
+            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>24.06.26</li><li class="is-next"><a data-pop href="#a-venir">12.12.26 · bounce</a></li></ul></dd></div>
+          </dl>
+          <div class="fmt-media">
+            <figure><img src="assets/img/affiches/affiche-estaminet-24juin.jpg" width="640" height="800" alt="Affiche Versatyl à l'Estaminet, 24 juin 2026" loading="lazy" decoding="async"><figcaption>24.06</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- 07 -->
+      <details class="fmt" name="formats">
+        <summary class="fmt-sum" data-cursor="Ouvrir">
+          <span class="fmt-num">07</span>
+          <span class="fmt-name">La Traverse des Balkis</span>
+          <span class="fmt-meta">Bar · 6e · 120 pers.</span>
+          <span class="fmt-ico" aria-hidden="true"></span>
+        </summary>
+        <div class="fmt-body">
+          <dl class="fmt-facts">
+            <div><dt>Lieu</dt><dd>La Traverse des Balkis, bar, Marseille 6e</dd></div>
+            <div><dt>Jauge</dt><dd>120 personnes · entrée libre</dd></div>
+            <div><dt>Horaires</dt><dd>19h–1h</dd></div>
+            <div><dt>Acte III</dt><dd>89 intéressés sur Shotgun</dd></div>
+            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Trance bouncy</li><li>Disco</li><li>Hard bounce</li><li>Hard techno</li></ol></dd></div>
+            <div class="fmt-wide"><dt>Dates</dt><dd><ul class="fmt-dates"><li>21.05.26</li><li>09.07.26</li><li>31.07.26</li></ul></dd></div>
+          </dl>
+          <div class="fmt-media">
+            <figure><img src="assets/img/affiches/affiche-acte3-traverse-21mai.jpg" width="640" height="800" alt="Affiche Acte III à La Traverse des Balkis, 21 mai 2026" loading="lazy" decoding="async"><figcaption>21.05 · Acte III</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-traverse-balkis-9juil-papillon.jpg" width="640" height="800" alt="Affiche La Traverse des Balkis, 9 juillet 2026" loading="lazy" decoding="async"><figcaption>09.07</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-traverse-balkis-31juil.jpg" width="640" height="800" alt="Affiche La Traverse des Balkis, 31 juillet 2026" loading="lazy" decoding="async"><figcaption>31.07</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- 08 -->
+      <details class="fmt" name="formats">
+        <summary class="fmt-sum" data-cursor="Ouvrir">
+          <span class="fmt-num">08</span>
+          <span class="fmt-name"><span aria-hidden="true">Nucleaire</span><span class="sr-only">Le Nucléaire</span></span>
+          <span class="fmt-meta">Bar · 6e · 100 pers.</span>
+          <span class="fmt-ico" aria-hidden="true"></span>
+        </summary>
+        <div class="fmt-body">
+          <dl class="fmt-facts">
+            <div><dt>Lieu</dt><dd>Le Nucléaire, bar, Marseille 6e</dd></div>
+            <div><dt>Jauge</dt><dd>100 personnes</dd></div>
+            <div class="fmt-wide"><dt>Courbe</dt><dd><ol class="fmt-curve"><li>Trance</li><li>Hard techno</li><li>Indus</li></ol></dd></div>
+            <div class="fmt-wide"><dt>Premier line-up</dt><dd>Okram, Fefoz, DJMX, Nofame</dd></div>
+            <div class="fmt-wide"><dt>3 éditions</dt><dd><ul class="fmt-dates"><li>13.03.26</li><li>09.05.26</li><li>13.06.26</li></ul></dd></div>
+          </dl>
+          <div class="fmt-media">
+            <figure><img src="assets/img/affiches/affiche-premiere-soiree-nucleaire-13mars.jpg" width="750" height="800" alt="Affiche de la première soirée Versatyl au Nucléaire, 13 mars 2026" loading="lazy" decoding="async"><figcaption>13.03 · Première</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-acte2-nucleaire-9mai.jpg" width="640" height="800" alt="Affiche Nucléaire Acte II, 9 mai 2026" loading="lazy" decoding="async"><figcaption>09.05 · Acte II</figcaption></figure>
+            <figure><img src="assets/img/affiches/affiche-nucleaire-acte3.jpg" width="640" height="800" alt="Affiche Nucléaire Acte III, 13 juin 2026" loading="lazy" decoding="async"><figcaption>13.06 · Acte III</figcaption></figure>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -637,7 +604,7 @@
 </footer>
 
 <script src="js/config.js?v=8"></script>
-<script src="js/main.js?v=6"></script>
+<script src="js/main.js?v=8"></script>
 <script src="js/soirees.js?v=1"></script>
 </body>
 </html>

@@ -101,13 +101,26 @@
     const dx = nx - state.mouse.x, dy = ny - state.mouse.y;
     state.vel = Math.min(1, state.vel + Math.hypot(dx, dy) * 4);
     state.mouse.x = nx; state.mouse.y = ny;
+    state.overControl = !!(e.target && e.target.closest && e.target.closest("a, button"));
   }, { passive: true });
 
+  // Le hero tient sur un seul écran : le scroll ne choisit plus le lieu.
+  // Les clips alternent d'eux-mêmes (toute la liste Absolem, puis Danceteria, etc.).
   function readScroll() {
-    const total = heroBox.height - heroBox.vh;
-    state.scroll = Math.min(1, Math.max(0, (window.scrollY - heroBox.top) / Math.max(1, total)));
-    return state.scroll < 0.5 ? "absolem" : "danceteria";
+    state.scroll = Math.min(1, Math.max(0, (window.scrollY - heroBox.top) / Math.max(1, heroBox.height)));
+    return state.phase;
   }
+  // clip suivant ; en fin de liste on passe à l'autre lieu
+  function advance() {
+    state.index += 1;
+    if (state.index >= PHASES[state.phase].list.length) {
+      state.phase = state.phase === "absolem" ? "danceteria" : "absolem";
+      state.index = 0;
+    }
+    return PHASES[state.phase].list[state.index];
+  }
+  // un clic sur un lien ou un bouton du hero ne doit pas changer de clip
+  const isControl = (e) => !!(e.target.closest && e.target.closest("a, button"));
 
   new IntersectionObserver((entries) => {
     state.visible = entries[0].isIntersecting;
@@ -139,12 +152,8 @@
       state.lastSwitch = performance.now();
       updateHud();
     }
-    function next() {
-      const list = PHASES[state.phase].list;
-      state.index = (state.index + 1) % list.length;
-      show(list[state.index]);
-    }
-    sticky.addEventListener("click", next);
+    function next() { show(advance()); }
+    sticky.addEventListener("click", (e) => { if (!isControl(e)) next(); });
     show(PHASES[state.phase].list[0]);
 
     let rx = 0, ry = 0;
@@ -512,12 +521,10 @@
 
   function nextClip() {
     if (busy) return;
-    const list = PHASES[state.phase].list;
-    state.index = (state.index + 1) % list.length;
-    showClip(list[state.index]);
+    showClip(advance());
   }
 
-  sticky.addEventListener("click", () => { if (!useFallback) nextClip(); });
+  sticky.addEventListener("click", (e) => { if (!useFallback && !isControl(e)) nextClip(); });
 
   /* ---------- Survol du logo ---------- */
   const ray = new THREE.Raycaster();
@@ -582,7 +589,8 @@
     bgUniforms.uScroll.value = state.scroll;
     bgUniforms.uGlitch.value *= 0.9;
 
-    const hit = hitLogo();
+    // sur une vignette ou un lien, le logo ne réagit pas (pas de curseur « Suivant »)
+    const hit = state.overControl ? null : hitLogo();
     state.hoverTarget = hit ? 1 : 0;
     state.hover += (state.hoverTarget - state.hover) * 0.12;
     if (hit) u.uPoint.value.set(hit.x - 0.5, (hit.y - 0.5) / PLANE_AR);

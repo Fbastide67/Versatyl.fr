@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://versatyl.fr/assets/img/og.jpg">
   <link rel="preload" href="assets/fonts/Redband-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/GoodTimesRg-Bold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/style.css?v=14">
 </head>
 <body>
 
@@ -105,9 +105,29 @@
           <div class="hud-label"><span class="hud-chev">›››</span> VERSATYL // <span class="hud-place">ABSOLEM</span></div>
           <div class="hud-count"><span class="hud-index">01</span> / <span class="hud-total">06</span></div>
           <div class="hud-bar"><i></i></div>
+          <div class="hero-hint">Clique pour changer de clip · attrape les vignettes</div>
         </div>
         <div class="hero-scroll" aria-hidden="true">Scroll</div>
-        <div class="hero-hint">Bouge la souris · clique pour changer</div>
+        <!-- Vignettes : elles arrivent en tournant, suivent le scroll et se déplacent à la souris (js/main.js).
+             La date est à mettre à jour en même temps que la première carte de la section Soirées. -->
+        <div class="hero-cards">
+          <a class="hero-card" href="residents.html" style="--r:-3deg;--d:1.05s;--drift:-90px;--spin:-10deg">
+            <span class="hero-card-kicker">Le crew</span>
+            <span class="hero-card-title">Résidents</span>
+            <span class="hero-card-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="hero-card" data-shop href="#" target="_blank" rel="noopener" style="--r:2.5deg;--d:1.2s;--drift:-140px;--spin:12deg">
+            <span class="hero-card-kicker">Précommande</span>
+            <span class="hero-card-title">T-shirt</span>
+            <span class="hero-card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="hero-card hero-card--date" href="soirees.html#date-2026-11-20" style="--r:-1.5deg;--d:.9s;--drift:-50px;--spin:6deg">
+            <span class="hero-card-kicker">Prochaine date</span>
+            <span class="hero-card-big">20.11</span>
+            <span class="hero-card-title">Tout est permis</span>
+            <span class="hero-card-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -151,8 +171,8 @@
           <span class="soon-small">Tout est permis · La Traverse des Balkis</span>
           <span class="pill">Entrée libre · 19h–1h</span>
         </div>
-        <div class="event-date">20.11.26</div>
-        <a class="event-link" href="soirees.html#a-venir">Voir la date →</a>
+        <div class="event-date">Ven. 20.11.26</div>
+        <a class="event-link" href="soirees.html#date-2026-11-20">Voir la date →</a>
       </article>
       <article class="event-card event-card--next" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Florida Palace</span></div>
@@ -161,8 +181,8 @@
           <span class="soon-small">Versatyl x AEM2 · 2000 personnes</span>
           <span class="pill">Avec les étudiants en médecine</span>
         </div>
-        <div class="event-date">04.12.26</div>
-        <a class="event-link" href="soirees.html#a-venir">Voir la date →</a>
+        <div class="event-date">Ven. 04.12.26</div>
+        <a class="event-link" href="soirees.html#date-2026-12-04">Voir la date →</a>
       </article>
       <article class="event-card event-card--next" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Estaminet</span></div>
@@ -171,72 +191,8 @@
           <span class="soon-small">Soirée bounce à l'Estaminet</span>
           <span class="pill">Annonce imminente</span>
         </div>
-        <div class="event-date">12.12.26</div>
-        <a class="event-link" href="soirees.html#a-venir">Voir la date →</a>
-      </article>
-      <article class="event-card event-card--next" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Absolem · 14h de son</span></div>
-        <div class="event-visual event-visual--soon">
-          <span class="soon-big">08.01</span>
-          <span class="soon-small">Versatyl x Label Seven x 5 46</span>
-          <span class="pill">Soirée + after</span>
-        </div>
-        <div class="event-date">08.01.27</div>
-        <a class="event-link" href="soirees.html#a-venir">Voir la date →</a>
-      </article>
-      <article class="event-card" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Absolem · 5h–12h</span></div>
-        <div class="event-visual"><img src="assets/img/affiches/after-party-absolem_affiche.jpg" width="648" height="800" alt="Affiche After Party Absolem 2" loading="lazy"></div>
-        <div class="event-date">25.10.26</div>
-        <p class="event-name">After Party Absolem 2</p>
-      </article>
-      <article class="event-card" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Absolem · 22h–4h</span></div>
-        <div class="event-visual"><img src="assets/img/affiches/affiche-absolem-24sept.jpg" width="642" height="800" alt="Affiche Versatyl x L&#x27;Absolem" loading="lazy"></div>
-        <div class="event-date">24.09.26</div>
-        <p class="event-name">Versatyl x L&#x27;Absolem</p>
-      </article>
-      <article class="event-card" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Traverse des Balkis</span></div>
-        <div class="event-visual"><img src="assets/img/affiches/affiche-tout-est-permis-2.jpg" width="640" height="800" alt="Affiche Tout est permis²" loading="lazy"></div>
-        <div class="event-date">12.09.26</div>
-        <p class="event-name">Tout est permis²</p>
-      </article>
-      <article class="event-card" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Danceteria · 0h–6h</span></div>
-        <div class="event-visual"><img src="assets/img/affiches/affiche-danceteria-chapitre3.jpg" width="640" height="800" alt="Affiche Danceteria : Chapitre 3" loading="lazy"></div>
-        <div class="event-date">03.09.26</div>
-        <p class="event-name">Danceteria : Chapitre 3</p>
-      </article>
-      <article class="event-card" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Absolem · 5h–12h</span></div>
-        <div class="event-visual"><img src="assets/img/affiches/affiche-after-party-30aout.jpg" width="640" height="800" alt="Affiche After Party" loading="lazy"></div>
-        <div class="event-date">30.08.26</div>
-        <p class="event-name">After Party</p>
-      </article>
-      <article class="event-card" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Danceteria · 0h–6h</span></div>
-        <div class="event-visual"><img src="assets/img/affiches/affiche-danceteria-le-retour-13aout.jpg" width="640" height="800" alt="Affiche Danceteria : Le Retour" loading="lazy"></div>
-        <div class="event-date">13.08.26</div>
-        <p class="event-name">Danceteria : Le Retour</p>
-      </article>
-      <article class="event-card" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Danceteria</span></div>
-        <div class="event-visual"><img src="assets/img/affiches/affiche-danceteria-16juil.jpg" width="640" height="800" alt="Affiche 1re multi-rooms" loading="lazy"></div>
-        <div class="event-date">16.07.26</div>
-        <p class="event-name">1re multi-rooms</p>
-      </article>
-      <article class="event-card" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Manray</span></div>
-        <div class="event-visual"><img src="assets/img/affiches/affiche-manray-immersion-noire.jpg" width="640" height="800" alt="Affiche L&#x27;Immersion Noire" loading="lazy"></div>
-        <div class="event-date">28.06.26</div>
-        <p class="event-name">L&#x27;Immersion Noire</p>
-      </article>
-      <article class="event-card" data-cursor="Soirée">
-        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Le Nucléaire</span></div>
-        <div class="event-visual"><img src="assets/img/affiches/affiche-premiere-soiree-nucleaire-13mars.jpg" width="750" height="800" alt="Affiche Première soirée" loading="lazy"></div>
-        <div class="event-date">13.03.26</div>
-        <p class="event-name">Première soirée</p>
+        <div class="event-date">Sam. 12.12.26</div>
+        <a class="event-link" href="soirees.html#date-2026-12-12">Voir la date →</a>
       </article>
     </div>
   </section>
@@ -263,57 +219,6 @@
     <img class="shop-bat" src="assets/img/chauve-souris.png" alt="">
   </section>
 
-  <!-- ============ NOS VALEURS ============ -->
-  <section class="values" id="valeurs">
-    <div class="section-head">
-      <h2 class="h-display reveal" aria-label="Nos valeurs">Nos valeurs</h2>
-      <a class="btn" href="collectif.html#valeurs">Le collectif <span aria-hidden="true">→</span></a>
-    </div>
-    <ul class="values-grid">
-      <li class="reveal">
-        <span class="value-num">01</span>
-        <h3 aria-label="L'énergie avant le style">L'energie avant le style</h3>
-        <p>On construit nos line-ups autour d'une progression musicale, pas d'un genre. La nuit monte, de la house jusqu'au hardcore&nbsp;; l'after prend le chemin inverse.</p>
-      </li>
-      <li class="reveal">
-        <span class="value-num">02</span>
-        <h3 aria-label="Création humaine">Creation humaine</h3>
-        <p>Affiches, photos, vidéos&nbsp;: tout est fait par des graphistes, photographes et vidéastes locaux. Pas d'IA, pour garder l'identité et l'authenticité de la scène.</p>
-      </li>
-      <li class="reveal">
-        <span class="value-num">03</span>
-        <h3 aria-label="Scène locale">Scene locale</h3>
-        <p>Des résidents marseillais, des jeunes talents qu'on fait jouer, des lieux du 1er, du 2e et du 6e. Une culture qui grandit ici, avec celles et ceux qui la vivent.</p>
-      </li>
-      <li class="reveal">
-        <span class="value-num">04</span>
-        <h3 aria-label="Production éthique">Production ethique</h3>
-        <p>Nos vêtements sont pensés dans une démarche de production éthique. Créés par et pour la scène, en petites séries.</p>
-      </li>
-      <li class="reveal">
-        <span class="value-num">05</span>
-        <h3>Contre les VSS</h3>
-        <p>Versatyl lutte contre les violences sexistes, sexuelles et psychologiques, en soirée comme au sein des collectifs. Aucun comportement discriminatoire, sexiste, raciste ou homophobe n'est toléré.</p>
-      </li>
-      <li class="reveal">
-        <span class="value-num">06</span>
-        <h3>Prendre soin</h3>
-        <p>On sensibilise aux consommations excessives et aux usages à risque. Prenez soin de vous et de vos potes, jusqu'au petit matin.</p>
-      </li>
-    </ul>
-  </section>
-
-  <!-- ============ L'EXPÉRIENCE ============ -->
-  <section class="experience">
-    <div class="experience-head">
-      <h2 class="h-display reveal" aria-label="Une expérience évolutive">Une<br>experience<br>evolutive</h2>
-      <p class="lead reveal">
-        Nos soirées montent en puissance sans pitié, de la house à la hardcore dans la même nuit.
-        Nos afters prennent le chemin inverse&nbsp;: on démarre sur de l'acid techno et on finit sur de l'indie dance ou de la minimal.
-      </p>
-    </div>
-  </section>
-
   <!-- ============ GALERIE ============ -->
   <section class="gallery" id="galerie">
     <div class="section-head">
@@ -322,11 +227,6 @@
     </div>
     <div class="gallery-track" data-dir="-1"><div class="gallery-strip"><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_01.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_02.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_03.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_04.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_05.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_06.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_07.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_08.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_09.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_10.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_01.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_02.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_03.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_04.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_05.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_06.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_07.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_08.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_09.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_10.jpg" width="636" height="847" alt="" aria-hidden="true"></figure></div></div>
     <div class="gallery-track" data-dir="1"><div class="gallery-strip"><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_01.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_02.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_03.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_04.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_05.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_06.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_07.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_08.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_09.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_10.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_01.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_02.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_03.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_04.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_05.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_06.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_07.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_08.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_09.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_10.jpg" width="676" height="847" alt="" aria-hidden="true"></figure></div></div>
-  </section>
-
-  <!-- ============ LOGO 3D ============ -->
-  <section class="bigword" aria-hidden="true">
-    <div class="bigword-3d"><span data-text="VERSATYL">VERSATYL</span></div>
   </section>
 
 </main>
@@ -354,7 +254,7 @@
 
 <script src="js/vendor/three.min.js"></script>
 <script src="js/config.js?v=8"></script>
-<script src="js/hero.js?v=9"></script>
-<script src="js/main.js?v=7"></script>
+<script src="js/hero.js?v=11"></script>
+<script src="js/main.js?v=8"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@
 }
 
 /* titres de section (Redband, sans accents) */
-.co-h2 { font-size: clamp(54px, 10vw, 150px); line-height: 1.2; }
+.co-h2 { font-size: var(--h-section); line-height: 1.2; }
 /* apparition des grands titres : fondu seul. Le glissement de 40px de .reveal
    faisait passer le titre (déjà à moitié opaque) sur la ligne de texte juste en dessous. */
 .co-h2.reveal, .co-join-title.reveal { transform: none; }
@@ -86,7 +86,7 @@
 @media (min-width: 1000px) {
   .co-history-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(40px, 6vw, 100px); align-items: start; }
   .co-history-head { position: sticky; top: calc(var(--bar-h) + 32px); }
-  .co-history-head .co-h2 { font-size: clamp(54px, 6.8vw, 110px); }
+  .co-history-head .co-h2 { font-size: var(--h-section); }
 }
 
 .co-timeline {
@@ -159,7 +159,7 @@
   margin-bottom: clamp(24px, 3vw, 40px);
 }
 .co-next-title {
-  margin: 0; font: 400 clamp(46px, 7vw, 104px)/1.2 var(--f-display); text-transform: uppercase;
+  margin: 0; font: 400 var(--h-section)/1.2 var(--f-display); text-transform: uppercase;
   color: var(--blanc); text-shadow: 4px 4px 0 var(--fuchsia); overflow-wrap: anywhere;
 }
 /* Redband : interligne 1.2 minimum (style.css met .soon-big à 1.15) */
@@ -289,7 +289,7 @@
 .co-beyond { margin-top: clamp(64px, 8vw, 120px); padding: 0 var(--gutter); }
 .co-values .co-beyond-title {
   margin: 0 0 clamp(24px, 3vw, 40px);
-  font: 400 clamp(42px, 7vw, 110px)/1.2 var(--f-display); text-transform: uppercase;
+  font: 400 var(--h-section)/1.2 var(--f-display); text-transform: uppercase;
   color: var(--blanc); text-shadow: 4px 4px 0 var(--violet-neon); overflow-wrap: anywhere;
 }
 .co-beyond-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
@@ -318,7 +318,7 @@
 .co-join-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; min-width: 0; }
 .co-join-inner .lead { margin: 0; }
 .co-join-title {
-  margin: 0; font: 400 clamp(52px, 13vw, 116px)/1.2 var(--f-display); text-transform: uppercase;
+  margin: 0; font: 400 var(--h-section)/1.2 var(--f-display); text-transform: uppercase;
   color: var(--blanc); text-shadow: 4px 4px 0 var(--fuchsia); overflow-wrap: anywhere;
 }
 /* l'enseigne néon dans un écran à part : jamais de texte posé sur la vidéo */
@@ -335,7 +335,6 @@
 }
 @media (min-width: 1000px) {
   .co-join { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
-  .co-join-title { font-size: clamp(52px, 7vw, 116px); }
 }
 .co-join-roles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .co-join-roles li {

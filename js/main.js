@@ -67,6 +67,61 @@
     });
   }
 
+  /* ---------- vignettes du hero : dérive au scroll + déplacement à la souris ----------
+     L'arrivée en rotation est en CSS (hero-card-in). Ici :
+     --p (0 → 1) suit le scroll du hero, les vignettes dérivent et tournent avec lui ;
+     --x / --y / --t suivent la souris quand on attrape une vignette.
+     Au doigt, les vignettes restent de simples liens (sinon on ne pourrait plus scroller). */
+  const heroCards = $$(".hero-card");
+  const heroEl = $(".hero");
+  if (heroCards.length && heroEl) {
+    if (!reduce) {
+      const drift = () => {
+        const p = Math.min(1, Math.max(0, window.scrollY / Math.max(1, heroEl.offsetHeight)));
+        heroEl.style.setProperty("--p", p.toFixed(3));
+      };
+      window.addEventListener("scroll", drift, { passive: true });
+      drift();
+    }
+    const clamp = (v, a, b) => Math.min(Math.max(v, a), Math.max(a, b));
+    let topZ = 5;
+    heroCards.forEach((card) => {
+      let id = null, sx = 0, sy = 0, ox = 0, oy = 0, x = 0, y = 0, lastX = 0, tilt = 0, moved = false, box = null;
+      card.addEventListener("dragstart", (e) => e.preventDefault());
+      card.addEventListener("pointerdown", (e) => {
+        if (e.pointerType !== "mouse" || e.button !== 0) return;
+        id = e.pointerId; sx = lastX = e.clientX; sy = e.clientY; ox = x; oy = y; moved = false; tilt = 0;
+        // limites : la vignette reste dans le hero, sous la barre du haut
+        const r = card.getBoundingClientRect(), h = heroEl.getBoundingClientRect();
+        const bar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--bar-h")) || 46;
+        box = { x0: ox + h.left - r.left, x1: ox + h.right - r.right, y0: oy + Math.max(h.top, 0) + bar - r.top, y1: oy + h.bottom - r.bottom };
+        card.setPointerCapture(id);
+      });
+      card.addEventListener("pointermove", (e) => {
+        if (e.pointerId !== id) return;
+        const dx = e.clientX - sx, dy = e.clientY - sy;
+        if (!moved) {
+          if (Math.hypot(dx, dy) < 6) return;
+          moved = true; card.classList.add("is-drag"); card.style.zIndex = String(++topZ);
+        }
+        x = clamp(ox + dx, box.x0, box.x1); y = clamp(oy + dy, box.y0, box.y1);
+        // la vignette penche dans le sens du geste
+        tilt += (clamp((e.clientX - lastX) * 1.2, -14, 14) - tilt) * 0.35; lastX = e.clientX;
+        card.style.setProperty("--x", x.toFixed(1) + "px");
+        card.style.setProperty("--y", y.toFixed(1) + "px");
+        card.style.setProperty("--t", tilt.toFixed(2) + "deg");
+      });
+      const drop = (e) => {
+        if (e.pointerId !== id) return;
+        id = null; card.classList.remove("is-drag"); card.style.setProperty("--t", "0deg");
+      };
+      card.addEventListener("pointerup", drop);
+      card.addEventListener("pointercancel", drop);
+      // après un déplacement, le clic qui suit ne doit pas ouvrir le lien
+      card.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } });
+    });
+  }
+
   /* ---------- apparitions au scroll ---------- */
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
