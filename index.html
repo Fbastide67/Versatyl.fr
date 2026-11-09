@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://versatyl.fr/assets/img/og.jpg">
   <link rel="preload" href="assets/fonts/Redband-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/GoodTimesRg-Bold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body>
 
@@ -65,9 +65,9 @@
     <svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg>
   </a>
   <nav class="topbar-nav" aria-label="Navigation principale">
-    <a href="#soirees">Soirées</a>
-    <a href="#residents">Résidents</a>
-    <a href="#collectif">Le collectif</a>
+    <a href="soirees.html">Soirées</a>
+    <a href="residents.html">Résidents</a>
+    <a href="collectif.html">Le collectif</a>
     <a href="#galerie">Galerie</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -76,9 +76,9 @@
 </header>
 
 <div class="mobile-menu" id="mobile-menu" hidden>
-  <a href="#soirees">Soirees</a>
-  <a href="#residents">Residents</a>
-  <a href="#collectif">Le collectif</a>
+  <a href="soirees.html" aria-label="Soirées">Soirees</a>
+  <a href="residents.html" aria-label="Résidents">Residents</a>
+  <a href="collectif.html">Le collectif</a>
   <a href="#galerie">Galerie</a>
   <a href="#contact">Contact</a>
   <a data-shop href="#" target="_blank" rel="noopener">Boutique ↗</a>
@@ -100,13 +100,15 @@
 
       <h1 class="sr-only">Versatyl — collectif techno, Marseille</h1>
 
-      <div class="hero-hud">
-        <div class="hud-label"><span class="hud-chev">›››</span> VERSATYL // <span class="hud-place">ABSOLEM</span></div>
-        <div class="hud-count"><span class="hud-index">01</span> / <span class="hud-total">06</span></div>
-        <div class="hud-bar"><i></i></div>
+      <div class="hero-bottom">
+        <div class="hero-hud">
+          <div class="hud-label"><span class="hud-chev">›››</span> VERSATYL // <span class="hud-place">ABSOLEM</span></div>
+          <div class="hud-count"><span class="hud-index">01</span> / <span class="hud-total">06</span></div>
+          <div class="hud-bar"><i></i></div>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">Scroll</div>
+        <div class="hero-hint">Bouge la souris · clique pour changer</div>
       </div>
-      <div class="hero-hint">Bouge la souris · clique pour changer</div>
-      <div class="hero-scroll" aria-hidden="true">Scroll</div>
     </div>
   </section>
 
@@ -116,8 +118,9 @@
       Versatyl est un collectif techno né à Marseille. <em>On construit nos line-ups autour d'une énergie</em> et d'une progression musicale, pas d'un style.
       De la house à la hard techno, de la trance jusqu'à l'indus&nbsp;: le point de départ n'est jamais le point d'arrivée.
     </p>
+    <p class="manifesto-cta reveal"><a class="btn" href="collectif.html">Rencontrer le collectif <span aria-hidden="true">→</span></a></p>
     <div class="stickers" aria-hidden="true">
-      <span class="pill" style="--r:-6deg;--x:8%;--y:8%">Safe space</span>
+      <span class="pill" style="--r:-6deg;--x:8%;--y:8%">18 soirées depuis mars</span>
       <span class="pill" style="--r:5deg;--x:78%;--y:4%">6 heures de son</span>
       <span class="pill" style="--r:-3deg;--x:84%;--y:86%">Marseille 13</span>
       <img class="sticker-bat" src="assets/img/chauve-souris.png" alt="" style="--r:-8deg;--x:2%;--y:76%">
@@ -126,9 +129,9 @@
 
   <!-- ============ TEXTE QUI ONDULE ============ -->
   <section class="wavewords" aria-label="De la trance jusqu'à l'indus">
-    <div class="wave-row" data-dir="-1"><span>De la trance jusqu'a l'indus&nbsp;—&nbsp;</span></div>
+    <div class="wave-row" aria-hidden="true" data-dir="-1"><span>De la trance jusqu'a l'indus&nbsp;—&nbsp;</span></div>
     <div class="wave-row alt" data-dir="1"><span>Dance to hardmusic&nbsp;—&nbsp;</span></div>
-    <div class="wave-row" data-dir="-1"><span>Retourner le dancefloor&nbsp;—&nbsp;</span></div>
+    <div class="wave-row" aria-hidden="true" data-dir="-1"><span>Retourner le dancefloor&nbsp;—&nbsp;</span></div>
   </section>
 
   <!-- ============ L'EXPÉRIENCE ============ -->
@@ -149,68 +152,101 @@
   <section class="events" id="soirees">
     <div class="section-head">
       <h2 class="h-display reveal" aria-label="Soirées">Soirees</h2>
-      <p class="section-sub">Know it first. Le reste sur notre Instagram.</p>
+      <div class="section-actions">
+        <a class="btn" href="soirees.html">Toutes les soirées <span aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" data-shotgun href="#" target="_blank" rel="noopener">Billetterie Shotgun <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
     <div class="events-row">
-      <article class="event-card event-card--next">
+      <article class="event-card event-card--next" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Prochaine date</span></div>
         <div class="event-visual event-visual--soon">
           <span class="soon-big">20.11</span>
-          <span class="soon-small">La Traverse des Balkis</span>
-          <span class="pill">Annonce imminente</span>
+          <span class="soon-small">Tout est permis · La Traverse des Balkis</span>
+          <span class="pill">Entrée libre · 19h–1h</span>
         </div>
         <div class="event-date">20.11.26</div>
-        <a class="event-link" data-insta href="#" target="_blank" rel="noopener">Infos sur Insta ↗</a>
+        <a class="event-link" href="soirees.html#a-venir">Voir la date →</a>
       </article>
-      <article class="event-card">
+      <article class="event-card event-card--next" data-cursor="Soirée">
+        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Florida Palace</span></div>
+        <div class="event-visual event-visual--soon">
+          <span class="soon-big">04.12</span>
+          <span class="soon-small">Versatyl x AEM2 · 2000 personnes</span>
+          <span class="pill">Avec les étudiants en médecine</span>
+        </div>
+        <div class="event-date">04.12.26</div>
+        <a class="event-link" href="soirees.html#a-venir">Voir la date →</a>
+      </article>
+      <article class="event-card event-card--next" data-cursor="Soirée">
+        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Estaminet</span></div>
+        <div class="event-visual event-visual--soon">
+          <span class="soon-big">12.12</span>
+          <span class="soon-small">Soirée bounce à l'Estaminet</span>
+          <span class="pill">Annonce imminente</span>
+        </div>
+        <div class="event-date">12.12.26</div>
+        <a class="event-link" href="soirees.html#a-venir">Voir la date →</a>
+      </article>
+      <article class="event-card event-card--next" data-cursor="Soirée">
+        <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Absolem · 14h de son</span></div>
+        <div class="event-visual event-visual--soon">
+          <span class="soon-big">08.01</span>
+          <span class="soon-small">Versatyl x Label Seven x 5 46</span>
+          <span class="pill">Soirée + after</span>
+        </div>
+        <div class="event-date">08.01.27</div>
+        <a class="event-link" href="soirees.html#a-venir">Voir la date →</a>
+      </article>
+      <article class="event-card" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Absolem · 5h–12h</span></div>
         <div class="event-visual"><img src="assets/img/affiches/after-party-absolem_affiche.jpg" width="648" height="800" alt="Affiche After Party Absolem 2" loading="lazy"></div>
         <div class="event-date">25.10.26</div>
         <p class="event-name">After Party Absolem 2</p>
       </article>
-      <article class="event-card">
+      <article class="event-card" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Absolem · 22h–4h</span></div>
         <div class="event-visual"><img src="assets/img/affiches/affiche-absolem-24sept.jpg" width="642" height="800" alt="Affiche Versatyl x L&#x27;Absolem" loading="lazy"></div>
         <div class="event-date">24.09.26</div>
         <p class="event-name">Versatyl x L&#x27;Absolem</p>
       </article>
-      <article class="event-card">
+      <article class="event-card" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Traverse des Balkis</span></div>
         <div class="event-visual"><img src="assets/img/affiches/affiche-tout-est-permis-2.jpg" width="640" height="800" alt="Affiche Tout est permis²" loading="lazy"></div>
         <div class="event-date">12.09.26</div>
         <p class="event-name">Tout est permis²</p>
       </article>
-      <article class="event-card">
+      <article class="event-card" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Danceteria · 0h–6h</span></div>
         <div class="event-visual"><img src="assets/img/affiches/affiche-danceteria-chapitre3.jpg" width="640" height="800" alt="Affiche Danceteria : Chapitre 3" loading="lazy"></div>
         <div class="event-date">03.09.26</div>
         <p class="event-name">Danceteria : Chapitre 3</p>
       </article>
-      <article class="event-card">
+      <article class="event-card" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Absolem · 5h–12h</span></div>
         <div class="event-visual"><img src="assets/img/affiches/affiche-after-party-30aout.jpg" width="640" height="800" alt="Affiche After Party" loading="lazy"></div>
         <div class="event-date">30.08.26</div>
         <p class="event-name">After Party</p>
       </article>
-      <article class="event-card">
+      <article class="event-card" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Danceteria · 0h–6h</span></div>
         <div class="event-visual"><img src="assets/img/affiches/affiche-danceteria-le-retour-13aout.jpg" width="640" height="800" alt="Affiche Danceteria : Le Retour" loading="lazy"></div>
         <div class="event-date">13.08.26</div>
         <p class="event-name">Danceteria : Le Retour</p>
       </article>
-      <article class="event-card">
+      <article class="event-card" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Danceteria</span></div>
         <div class="event-visual"><img src="assets/img/affiches/affiche-danceteria-16juil.jpg" width="640" height="800" alt="Affiche 1re multi-rooms" loading="lazy"></div>
         <div class="event-date">16.07.26</div>
         <p class="event-name">1re multi-rooms</p>
       </article>
-      <article class="event-card">
+      <article class="event-card" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Manray</span></div>
         <div class="event-visual"><img src="assets/img/affiches/affiche-manray-immersion-noire.jpg" width="640" height="800" alt="Affiche L&#x27;Immersion Noire" loading="lazy"></div>
         <div class="event-date">28.06.26</div>
         <p class="event-name">L&#x27;Immersion Noire</p>
       </article>
-      <article class="event-card">
+      <article class="event-card" data-cursor="Soirée">
         <div class="event-top"><svg viewBox="0 0 867.18 358.54"><use href="#vt-logo"/></svg><span>Le Nucléaire</span></div>
         <div class="event-visual"><img src="assets/img/affiches/affiche-premiere-soiree-nucleaire-13mars.jpg" width="750" height="800" alt="Affiche Première soirée" loading="lazy"></div>
         <div class="event-date">13.03.26</div>
@@ -252,10 +288,13 @@
   <section class="residents" id="residents">
     <div class="section-head">
       <h2 class="h-display reveal" aria-label="Nos résidents">Nos residents</h2>
-      <p class="section-sub">Le crew qui fait trembler les murs.</p>
+      <div class="section-actions">
+        <p class="section-sub">Le crew qui fait trembler les murs.</p>
+        <a class="btn" href="residents.html">Tous les résidents <span aria-hidden="true">→</span></a>
+      </div>
     </div>
     <div class="residents-grid">
-      <article class="resident" style="--i:0">
+      <a class="resident" href="residents/djmx.html" data-cursor="Crew" data-tilt style="--i:0">
         <div class="resident-media"><img src="assets/img/djs/djmx.jpg" width="880" height="1100" alt="DJMX, Fondateur" loading="lazy"></div>
         <div class="resident-body">
           <div class="resident-row"><span class="resident-role">Fondateur</span><span class="resident-handle">@djmx.wav</span></div>
@@ -263,8 +302,8 @@
           <div class="resident-pills"><span class="pill">Hardtechno</span><span class="pill">Schranz</span></div>
           <p class="resident-bio">Fondateur du collectif. DJMX déchaîne une hardtechno qui fusionne schranz berlinoise et impacts hardtechno. Un voyage sombre, puissant et chargé d'émotions.</p>
         </div>
-      </article>
-      <article class="resident" style="--i:1">
+      </a>
+      <a class="resident" href="residents/fefoz.html" data-cursor="Crew" data-tilt style="--i:1">
         <div class="resident-media"><img src="assets/img/djs/fefoz.jpg" width="880" height="1100" alt="Fefoz, Résident" loading="lazy"></div>
         <div class="resident-body">
           <div class="resident-row"><span class="resident-role">Résident</span><span class="resident-handle">@fefoz.png</span></div>
@@ -272,8 +311,8 @@
           <div class="resident-pills"><span class="pill">Hardgroove</span><span class="pill">Berlin techno</span></div>
           <p class="resident-bio">Multi-instrumentiste, maître du hardgroove et de la Berlin techno. Des sets hypnotiques d'une précision chirurgicale.</p>
         </div>
-      </article>
-      <article class="resident" style="--i:2">
+      </a>
+      <a class="resident" href="residents/okram.html" data-cursor="Crew" data-tilt style="--i:2">
         <div class="resident-media"><img src="assets/img/djs/okram.jpg" width="892" height="1100" alt="Okram, Résident" loading="lazy"></div>
         <div class="resident-body">
           <div class="resident-row"><span class="resident-role">Résident</span></div>
@@ -281,17 +320,17 @@
           <div class="resident-pills"><span class="pill">Trance</span></div>
           <p class="resident-bio">Spécialiste de la trance&nbsp;: des sets lumineux, mélodiques et rythmés, portés par des grooves entraînants. Un seul objectif, faire vibrer la foule.</p>
         </div>
-      </article>
-      <article class="resident" style="--i:3">
-        <div class="resident-media"><img src="assets/img/djs/nofame.jpg" width="881" height="1100" alt="Nofame999, DJ Versatyl" loading="lazy"></div>
+      </a>
+      <a class="resident" href="residents/nofame999.html" data-cursor="Crew" data-tilt style="--i:3">
+        <div class="resident-media"><img src="assets/img/djs/nofame.jpg" width="881" height="1100" alt="Nofame999, Résident" loading="lazy"></div>
         <div class="resident-body">
-          <div class="resident-row"><span class="resident-role">DJ Versatyl</span><span class="resident-handle">@nofame999</span></div>
+          <div class="resident-row"><span class="resident-role">Résident</span><span class="resident-handle">@nofame999</span></div>
           <h3 class="resident-name" aria-label="Nofame999">Nofame999</h3>
           <div class="resident-pills"><span class="pill">Hardcore</span><span class="pill">Indus</span></div>
           <p class="resident-bio">Une techno radicale entre hardcore et indus. Préparez-vous à la transe&nbsp;: la traversée sera sans répit.</p>
         </div>
-      </article>
-      <article class="resident" style="--i:4">
+      </a>
+      <a class="resident" href="residents/marloux.html" data-cursor="Crew" data-tilt style="--i:4">
         <div class="resident-media"><img src="assets/img/djs/marloux.jpg" width="880" height="1100" alt="Marloux, DJ Versatyl" loading="lazy"></div>
         <div class="resident-body">
           <div class="resident-row"><span class="resident-role">DJ Versatyl</span></div>
@@ -299,8 +338,8 @@
           <div class="resident-pills"><span class="pill">Crew Versatyl</span></div>
           <p class="resident-bio">Membre du crew Versatyl, aux platines depuis l'Acte III à La Traverse des Balkis.</p>
         </div>
-      </article>
-      <article class="resident" style="--i:5">
+      </a>
+      <a class="resident" href="residents/thai.html" data-cursor="Crew" data-tilt style="--i:5">
         <div class="resident-media"><img src="assets/img/djs/thai.jpg" width="880" height="1100" alt="Thaï, DJ Versatyl" loading="lazy"></div>
         <div class="resident-body">
           <div class="resident-row"><span class="resident-role">DJ Versatyl</span></div>
@@ -308,7 +347,7 @@
           <div class="resident-pills"><span class="pill">Crew Versatyl</span></div>
           <p class="resident-bio">Membre du crew Versatyl, aux platines depuis l'Acte III à La Traverse des Balkis.</p>
         </div>
-      </article>
+      </a>
     </div>
   </section>
 
@@ -318,38 +357,59 @@
       <h2 class="h-display reveal">Memories</h2>
       <p class="section-sub">Photos @rtphotographie_</p>
     </div>
-    <div class="gallery-track" data-dir="-1"><div class="gallery-strip"><figure><img src="assets/img/photos/absolem_01.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_02.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_03.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_04.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_05.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_06.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_07.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_08.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_09.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_10.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/absolem_01.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/absolem_02.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/absolem_03.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/absolem_04.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/absolem_05.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/absolem_06.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/absolem_07.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/absolem_08.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/absolem_09.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/absolem_10.jpg" width="636" height="847" alt="" aria-hidden="true"></figure></div></div>
-    <div class="gallery-track" data-dir="1"><div class="gallery-strip"><figure><img src="assets/img/photos/danceteria3_01.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_02.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_03.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_04.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_05.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_06.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_07.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_08.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_09.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_10.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img src="assets/img/photos/danceteria3_01.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/danceteria3_02.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/danceteria3_03.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/danceteria3_04.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/danceteria3_05.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/danceteria3_06.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/danceteria3_07.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/danceteria3_08.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/danceteria3_09.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img src="assets/img/photos/danceteria3_10.jpg" width="676" height="847" alt="" aria-hidden="true"></figure></div></div>
+    <div class="gallery-track" data-dir="-1"><div class="gallery-strip"><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_01.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_02.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_03.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_04.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_05.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_06.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_07.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_08.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_09.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_10.jpg" width="636" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_01.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_02.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_03.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_04.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_05.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_06.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_07.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_08.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_09.jpg" width="636" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/absolem_10.jpg" width="636" height="847" alt="" aria-hidden="true"></figure></div></div>
+    <div class="gallery-track" data-dir="1"><div class="gallery-strip"><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_01.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_02.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_03.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_04.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_05.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_06.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_07.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_08.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_09.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_10.jpg" width="676" height="847" alt="Photo de soirée Versatyl"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_01.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_02.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_03.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_04.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_05.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_06.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_07.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_08.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_09.jpg" width="676" height="847" alt="" aria-hidden="true"></figure><figure><img loading="lazy" decoding="async" src="assets/img/photos/danceteria3_10.jpg" width="676" height="847" alt="" aria-hidden="true"></figure></div></div>
   </section>
 
   <!-- ============ BOUTIQUE ============ -->
   <section class="shop" id="boutique">
     <div class="shop-inner">
       <span class="hud-label"><span class="hud-chev">›››</span> Versatyl // Collection</span>
-      <h2 class="shop-title">Wear the<br>night</h2>
+      <h2 class="shop-title" aria-label="Wear Versatyl">Wear<br>Versatyl</h2>
       <p class="lead">Nos collections de vêtements sont pensées dans une démarche de production éthique. Créées par et pour la scène.</p>
       <a class="btn-sticker" data-shop href="#" target="_blank" rel="noopener">Voir la boutique <span aria-hidden="true">↗</span></a>
     </div>
     <img class="shop-bat" src="assets/img/chauve-souris.png" alt="">
   </section>
 
-  <!-- ============ ENGAGEMENTS ============ -->
-  <section class="safe">
-    <div class="safe-marquee" aria-hidden="true"><span>Safe space ✦ Safe space ✦ Safe space ✦ Safe space ✦ Safe space ✦ Safe space ✦&nbsp;</span><span>Safe space ✦ Safe space ✦ Safe space ✦ Safe space ✦ Safe space ✦ Safe space ✦&nbsp;</span></div>
-    <div class="safe-grid">
-      <div class="reveal">
-        <h3>Contre les VSS</h3>
-        <p>Versatyl lutte contre les violences sexistes et sexuelles et les violences psychologiques, en soirée comme au sein des collectifs. Aucun comportement discriminatoire, sexiste, raciste ou homophobe n'est toléré.</p>
-      </div>
-      <div class="reveal">
-        <h3 aria-label="Création humaine">Creation humaine</h3>
-        <p>Nos visuels sont faits par des vidéastes, photographes et graphistes locaux. On défend une création humaine pour garder l'identité et l'authenticité de la scène techno.</p>
-      </div>
-      <div class="reveal">
-        <h3>Prenez soin de vous</h3>
-        <p>On sensibilise aux consommations excessives et aux usages à risque. Prenez soin de vous et de vos potes, jusqu'au petit matin.</p>
-      </div>
+  <!-- ============ NOS VALEURS ============ -->
+  <section class="values" id="valeurs">
+    <div class="section-head">
+      <h2 class="h-display reveal" aria-label="Nos valeurs">Nos valeurs</h2>
+      <a class="btn" href="collectif.html#valeurs">Le collectif <span aria-hidden="true">→</span></a>
     </div>
+    <ul class="values-grid">
+      <li class="reveal">
+        <span class="value-num">01</span>
+        <h3 aria-label="L'énergie avant le style">L'energie avant le style</h3>
+        <p>On construit nos line-ups autour d'une progression musicale, pas d'un genre. La nuit monte, de la house jusqu'au hardcore&nbsp;; l'after prend le chemin inverse.</p>
+      </li>
+      <li class="reveal">
+        <span class="value-num">02</span>
+        <h3 aria-label="Création humaine">Creation humaine</h3>
+        <p>Affiches, photos, vidéos&nbsp;: tout est fait par des graphistes, photographes et vidéastes locaux. Pas d'IA, pour garder l'identité et l'authenticité de la scène.</p>
+      </li>
+      <li class="reveal">
+        <span class="value-num">03</span>
+        <h3 aria-label="Scène locale">Scene locale</h3>
+        <p>Des résidents marseillais, des jeunes talents qu'on fait jouer, des lieux du 1er, du 2e et du 6e. Une culture qui grandit ici, avec celles et ceux qui la vivent.</p>
+      </li>
+      <li class="reveal">
+        <span class="value-num">04</span>
+        <h3 aria-label="Production éthique">Production ethique</h3>
+        <p>Nos vêtements sont pensés dans une démarche de production éthique. Créés par et pour la scène, en petites séries.</p>
+      </li>
+      <li class="reveal">
+        <span class="value-num">05</span>
+        <h3>Contre les VSS</h3>
+        <p>Versatyl lutte contre les violences sexistes, sexuelles et psychologiques, en soirée comme au sein des collectifs. Aucun comportement discriminatoire, sexiste, raciste ou homophobe n'est toléré.</p>
+      </li>
+      <li class="reveal">
+        <span class="value-num">06</span>
+        <h3>Prendre soin</h3>
+        <p>On sensibilise aux consommations excessives et aux usages à risque. Prenez soin de vous et de vos potes, jusqu'au petit matin.</p>
+      </li>
+    </ul>
   </section>
 
   <!-- ============ LOGO 3D ============ -->
@@ -363,13 +423,15 @@
   <div class="footer-top">
     <div>
       <p class="footer-kicker">Marseille based techno music collectif</p>
-      <a class="footer-mail" data-mail href="#">versatyl.marseille@gmail.com</a>
+      <a class="footer-mail" data-mail href="#">versatyl.marseille<wbr>@gmail.com</a>
     </div>
     <ul class="footer-links">
       <li><a data-insta href="#" target="_blank" rel="noopener">Instagram</a></li>
       <li><a data-tiktok href="#" target="_blank" rel="noopener">TikTok</a></li>
       <li><a data-shop href="#" target="_blank" rel="noopener">Boutique</a></li>
-      <li><a href="#residents" aria-label="Résidents">Residents</a></li>
+      <li><a href="soirees.html" aria-label="Soirées">Soirees</a></li>
+      <li><a href="residents.html" aria-label="Résidents">Residents</a></li>
+      <li><a href="collectif.html">Collectif</a></li>
     </ul>
   </div>
   <div class="footer-bottom">
@@ -379,8 +441,8 @@
 </footer>
 
 <script src="js/vendor/three.min.js"></script>
-<script src="js/config.js?v=6"></script>
-<script src="js/hero.js?v=5"></script>
-<script src="js/main.js?v=4"></script>
+<script src="js/config.js?v=7"></script>
+<script src="js/hero.js?v=7"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>

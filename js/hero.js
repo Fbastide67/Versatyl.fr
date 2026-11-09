@@ -85,18 +85,27 @@
   }
 
   /* ---------- Souris / scroll ---------- */
+  // positions mises en cache (pas de getBoundingClientRect à chaque image)
+  const heroBox = { top: 0, height: 1, vh: 1, vw: 1 };
+  function measure() {
+    const r = hero.getBoundingClientRect();
+    heroBox.top = r.top + window.scrollY; heroBox.height = r.height;
+    heroBox.vh = window.innerHeight; heroBox.vw = window.innerWidth;
+  }
+  measure();
+  window.addEventListener("resize", measure);
+  window.addEventListener("load", measure);
+
   window.addEventListener("pointermove", (e) => {
-    const r = sticky.getBoundingClientRect();
-    const nx = (e.clientX - r.left) / r.width, ny = (e.clientY - r.top) / r.height;
+    const nx = e.clientX / heroBox.vw, ny = e.clientY / heroBox.vh;
     const dx = nx - state.mouse.x, dy = ny - state.mouse.y;
     state.vel = Math.min(1, state.vel + Math.hypot(dx, dy) * 4);
     state.mouse.x = nx; state.mouse.y = ny;
   }, { passive: true });
 
   function readScroll() {
-    const r = hero.getBoundingClientRect();
-    const total = r.height - window.innerHeight;
-    state.scroll = Math.min(1, Math.max(0, -r.top / Math.max(1, total)));
+    const total = heroBox.height - heroBox.vh;
+    state.scroll = Math.min(1, Math.max(0, (window.scrollY - heroBox.top) / Math.max(1, total)));
     return state.scroll < 0.5 ? "absolem" : "danceteria";
   }
 
@@ -162,7 +171,7 @@
   try {
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
   } catch (e) { startFallback(false); return; }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
   renderer.autoClear = false;
   renderer.setClearColor(0x0e0118, 1);
 
@@ -191,10 +200,13 @@
   function drawStrip() {
     const ctx = strip.getContext("2d");
     ctx.clearRect(0, 0, strip.width, strip.height);
-    ctx.font = '228px "Redband"';
+    ctx.font = '176px "Redband"';
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#fff";
     const W = strip.width;
+    // centre vertical réel des lettres (Redband dépasse largement de sa boîte)
+    const mm = ctx.measureText("HAMBURGEFONTSQJ");
+    const baseY = (LINE_H - (mm.actualBoundingBoxAscent + mm.actualBoundingBoxDescent)) / 2 + mm.actualBoundingBoxAscent;
     for (let line = 0; line < LINES; line++) {
       const order = shuffled(WORDS, line + 1);
       // on prend des mots jusqu'à remplir la ligne, puis on ajuste
@@ -210,7 +222,7 @@
       ctx.translate(0, line * LINE_H);
       ctx.scale(W / w, 1);
       let x = 0;
-      units.forEach((u) => { ctx.fillText(u, x, LINE_H / 2 + 12); x += ctx.measureText(u).width; });
+      units.forEach((u) => { ctx.fillText(u, x, baseY); x += ctx.measureText(u).width; });
       ctx.restore();
     }
     stripTex.needsUpdate = true;
@@ -248,7 +260,7 @@
         float near = smoothstep(0.5, 0.0, dist);
         uv.y += sin(dist * 26.0 - uTime * 4.0) * 0.014 * near;
         uv += normalize(d + 1e-5) * 0.05 * near * near;
-        float amp = 0.028 + uVel * 0.05;
+        float amp = 0.012 + uVel * 0.022;
         uv.y += sin(uv.x * 4.0 + uTime * 1.1) * amp;
         uv.x += sin(uv.y * 8.0 + uTime * 0.7) * 0.012;
 
@@ -264,7 +276,7 @@
         float ty = fract(uv.y * uRows);
         // chaque rangée lit sa propre ligne de mots dans la planche
         float line = mod(row, uLines);
-        float tv = (uLines - line - 1.0 + clamp(ty, 0.02, 0.98)) / uLines;
+        float tv = (uLines - line - 1.0 + clamp(ty, 0.04, 0.96)) / uLines;
         float a = texture2D(uText, vec2(tx, tv)).a;
 
         vec3 nuit = vec3(0.055, 0.004, 0.094);
@@ -608,7 +620,7 @@
   state.phase = readScroll();
   updateHud();
   drawStrip();
-  (document.fonts ? document.fonts.load('228px "Redband"') : Promise.resolve())
+  (document.fonts ? document.fonts.load('176px "Redband"') : Promise.resolve())
     .then(() => drawStrip()).catch(() => {});
   buildLogo().catch(() => {});
   if (isFile) {

@@ -11,6 +11,9 @@ window.VERSATYL_CONFIG = {
   tiktok: "https://www.tiktok.com/@versatyl_marseille",
   email: "versatyl.marseille@gmail.com",
 
+  // Billetterie : page organisateur Shotgun (toutes les dates en vente)
+  shotgun: "https://shotgun.live/fr/venues/versatyl-marseille",
+
   // Vidéos qui passent dans le logo (dossier assets/video).
   // Le haut de la page montre Absolem, la suite montre Danceteria.
   videos: {
