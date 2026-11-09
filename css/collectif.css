@@ -253,7 +253,7 @@
 }
 .co-res-strip > li { scroll-snap-align: start; min-width: 0; }
 @media (min-width: 1000px) {
-  .co-res-strip { grid-auto-flow: row; grid-template-columns: repeat(8, minmax(0, 1fr)); overflow: visible; }
+  .co-res-strip { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; }
 }
 .co-res {
   display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: var(--fuchsia);

@@ -392,3 +392,17 @@
 @media (prefers-reduced-motion: reduce) and (max-width: 1000px) {
   .curve.reveal:not(.is-in) .curve-bar { transform: scaleX(var(--h)); }
 }
+
+/* ---------- en vidéo (clips de la soirée Absolem) ---------- */
+.sv-clips { padding: clamp(60px, 8vw, 120px) 0; }
+.sv-clips-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px);
+  padding: 0 var(--gutter);
+}
+.sv-clip { margin: 0; display: grid; gap: 10px; min-width: 0; }
+.sv-clip video { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: var(--prune); border-radius: 2px; display: block; }
+.sv-clip figcaption { font: 700 10px/1.4 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--fuchsia); }
+@media (max-width: 900px) { .sv-clips-grid { grid-template-columns: 1fr; } }
+
+/* le grand titre Redband ne doit pas capter les clics des boutons en dessous */
+.sv-cta-title, .sv-h2 { pointer-events: none; }

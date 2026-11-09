@@ -408,10 +408,10 @@ a { color: inherit; }
 /* ---------- résidents ---------- */
 .residents { padding: clamp(80px, 10vw, 150px) 0; }
 .residents-grid {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.2vw, 32px);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(18px, 2.2vw, 32px);
   padding: 0 var(--gutter);
 }
-@media (max-width: 1000px) { .residents-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1100px) { .residents-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .residents-grid { grid-template-columns: 1fr; } }
 .resident {
   display: flex; flex-direction: column;
@@ -426,8 +426,9 @@ a { color: inherit; }
 .resident-row { display: flex; justify-content: space-between; gap: 8px; font: 700 10px/1.2 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; }
 .resident-role { color: var(--fuchsia); }
 .resident-handle { color: var(--texte-doux); }
-.resident-name { margin: 0; font: 400 clamp(40px, 3.8vw, 62px)/1.2 var(--f-display); text-transform: uppercase; color: var(--blanc); overflow-wrap: anywhere; }
+.resident-name { margin: 0; font: 400 clamp(34px, 2.6vw, 54px)/1.2 var(--f-display); text-transform: uppercase; color: var(--blanc); overflow-wrap: anywhere; }
 .resident:hover .resident-name { text-shadow: -2px 0 rgba(255, 0, 80, .75), 2px 0 rgba(0, 200, 255, .75); }
+@media (max-width: 1100px) { .resident-name { font-size: clamp(34px, 4.6vw, 54px); } }
 .resident-pills { display: flex; flex-wrap: wrap; gap: 6px; }
 .resident-bio { margin: 0; font-size: 12.5px; line-height: 1.7; color: var(--texte-doux); }
 
