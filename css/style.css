@@ -268,7 +268,7 @@ a { color: inherit; }
 /* ---------- manifeste ---------- */
 .manifesto {
   position: relative; z-index: 1; overflow: hidden;
-  padding: clamp(70px, 9vw, 130px) var(--gutter) clamp(90px, 14vw, 200px);
+  padding: clamp(70px, 9vw, 130px) var(--gutter) clamp(60px, 8vw, 110px);
   background: var(--nuit);
 }
 .manifesto-text {
@@ -277,16 +277,6 @@ a { color: inherit; }
   color: var(--blanc); text-align: center;
 }
 .manifesto-text em { font-style: normal; color: var(--fuchsia); text-shadow: var(--glow); }
-.stickers { position: absolute; inset: 0; pointer-events: none; }
-.stickers > * { position: absolute; left: var(--x); top: var(--y); transform: rotate(var(--r)); }
-.stickers .pill { font-size: 13px; padding: 8px 12px; white-space: nowrap; }
-.sticker-bat { width: clamp(90px, 12vw, 170px); opacity: .85; }
-@media (max-width: 1180px) {
-  .manifesto { padding-bottom: clamp(60px, 10vw, 100px); }
-  .stickers { position: static; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-top: 36px; }
-  .stickers > * { position: static; }
-  .sticker-bat { width: 80px; }
-}
 
 /* ---------- texte ondulé ---------- */
 .wavewords { padding: 10px 0 clamp(60px, 8vw, 120px); overflow: hidden; background: var(--nuit); contain: paint; }
@@ -533,3 +523,26 @@ a.resident { text-decoration: none; color: inherit; }
 .h-display, .shop-title, .concept-title, .bigword, .wave-row, .soon-big, .values h3 { pointer-events: none; }
 .footer-links a, .mobile-menu a { overflow: hidden; vertical-align: top; }
 .mobile-menu a { display: block; }
+
+/* ---------- boutique : on voit tout de suite que c'est des vêtements ---------- */
+.shop { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 90px); align-items: center; }
+.shop-title { font-size: clamp(56px, 7.6vw, 150px); overflow-wrap: normal; }
+.shop-pitch { margin: 0; font: 900 clamp(22px, 2.6vw, 38px)/1.2 var(--f-ui); text-transform: uppercase; color: var(--blanc); }
+.shop-inner .lead { margin: 0; max-width: 52ch; }
+.shop-steps { list-style: none; margin: 4px 0 6px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.shop-steps li { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border: 1px solid rgba(255, 255, 255, .45); border-radius: 999px;
+  font: 700 13px/1.2 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--blanc); background: rgba(14, 1, 24, .35); }
+.shop-steps b { color: var(--fuchsia); font-weight: 900; }
+.shop-tee { position: relative; z-index: 1; display: block; width: min(100%, 460px); justify-self: center; aspect-ratio: 400 / 420;
+  transition: transform .4s cubic-bezier(.2, .7, .2, 1); }
+.shop-tee svg { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(10px 12px 0 var(--nuit)); }
+.shop-tee-logo { position: absolute; left: 50%; top: 40%; width: 46%; transform: translate(-50%, -50%); filter: brightness(0) invert(1); }
+.shop-tee-tag { position: absolute; right: -6px; top: 18%; transform: rotate(8deg); padding: 8px 14px; border-radius: 999px;
+  background: var(--blanc); color: var(--nuit); font: 900 12px/1 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; }
+.shop-tee:hover { transform: rotate(-3deg) scale(1.03); }
+@media (max-width: 900px) {
+  .shop { grid-template-columns: 1fr; }
+  .shop-title { font-size: clamp(48px, 13vw, 120px); }
+  .shop-tee { width: min(78%, 360px); }
+}
+@media (prefers-reduced-motion: reduce) { .shop-tee { transition: none; } .shop-tee:hover { transform: none; } }
