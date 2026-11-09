@@ -24,10 +24,10 @@ window.VERSATYL_CONFIG = {
   // Mots qui défilent derrière le gros logo (chaque rangée les mélange).
   // Sans accents : la police Redband ne les a pas.
   heroWords: [
-    "Absolem", "Danceteria", "Manray", "Le Nucleaire", "Traverse des Balkis", "Estaminet",
-    "Marseille", "Soleil", "Soiree", "After", "Dancefloor", "Versatyl",
-    "Techno", "Hardtechno", "Trance", "Indus", "Schranz", "Hardgroove",
-    "Acid", "House", "Hardcore", "Minimal", "Indie dance"
+    "L energie avant le style", "Creation humaine", "Scene locale", "Production ethique",
+    "Contre les VSS", "Prendre soin", "Marseille", "Versatyl",
+    "Techno", "Hard techno", "Trance", "Indus", "Hardgroove", "Acid",
+    "House", "Tech house", "Hardcore", "Schranz", "Progression"
   ],
 
   // Durée d'affichage d'un clip avant de passer au suivant (ms)

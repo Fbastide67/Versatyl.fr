@@ -265,18 +265,32 @@ a { color: inherit; }
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1); }
 .reveal.is-in { opacity: 1; transform: none; }
 
-/* ---------- manifeste ---------- */
-.manifesto {
-  position: relative; z-index: 1; overflow: hidden;
-  padding: clamp(70px, 9vw, 130px) var(--gutter) clamp(60px, 8vw, 110px);
-  background: var(--nuit);
+/* ---------- manifeste : texte qui s'allume au scroll sur vidéo ---------- */
+.manifesto { position: relative; z-index: 1; height: 240vh; background: var(--nuit); }
+.manifesto-sticky {
+  position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
+  display: grid; place-items: center;
 }
+.manifesto-bg {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transform: scale(calc(1.08 - var(--mp, 0) * .08));
+}
+.manifesto-shade {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, var(--nuit) 0%, rgba(14,1,24,.2) 18%, rgba(14,1,24,.2) 82%, var(--nuit) 100%),
+    rgba(14,1,24,.38);
+}
+.manifesto-inner { position: relative; z-index: 1; padding: 0 var(--gutter); }
 .manifesto-text {
   margin: 0 auto; max-width: 1300px;
   font: 700 clamp(22px, 3.4vw, 52px)/1.22 var(--f-ui); text-transform: uppercase; letter-spacing: .01em;
   color: var(--blanc); text-align: center;
 }
-.manifesto-text em { font-style: normal; color: var(--fuchsia); text-shadow: var(--glow); }
+.manifesto-text em { font-style: normal; }
+.manifesto-text .w { color: rgba(243,230,247,.24); transition: color .35s ease, text-shadow .35s ease; }
+.manifesto-text .w.on { color: var(--blanc); }
+.manifesto-text em .w.on { color: var(--fuchsia); text-shadow: var(--glow); }
 
 /* ---------- texte ondulé ---------- */
 .wavewords { padding: 10px 0 clamp(60px, 8vw, 120px); overflow: hidden; background: var(--nuit); contain: paint; }
@@ -514,7 +528,13 @@ a { color: inherit; }
 
 /* ---------- ajouts communs (multi-pages) ---------- */
 .section-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
-.manifesto-cta { position: relative; z-index: 1; margin: clamp(32px, 4vw, 52px) 0 0; text-align: center; }
+.manifesto-cta { position: relative; z-index: 1; margin: clamp(32px, 4vw, 52px) 0 0; text-align: center; opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.manifesto.is-done .manifesto-cta { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .manifesto { height: auto; }
+  .manifesto-sticky { position: relative; min-height: 100vh; }
+  .manifesto-cta { opacity: 1; transform: none; }
+}
 a.resident { text-decoration: none; color: inherit; }
 .page-top { padding-top: var(--bar-h); }
 .kicker { display: inline-block; font: 700 11px/1.4 var(--f-ui); letter-spacing: .2em; text-transform: uppercase; color: var(--lavande); }

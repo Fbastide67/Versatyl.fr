@@ -179,7 +179,7 @@
      Une planche de LINES lignes : chaque ligne enchaîne les mots de
      config.js dans un ordre différent, chaque rangée à l'écran lit
      une ligne différente. */
-  const LINES = 8, LINE_H = 256;
+  const LINES = 20, LINE_H = 200;
   const strip = document.createElement("canvas");
   strip.width = renderer.capabilities.maxTextureSize >= 8192 ? 8192 : 4096;
   strip.height = LINES * LINE_H;
@@ -187,7 +187,7 @@
   stripTex.wrapS = THREE.RepeatWrapping; stripTex.wrapT = THREE.ClampToEdgeWrapping;
   stripTex.anisotropy = 4;
   const WORDS = (CFG.heroWords && CFG.heroWords.length ? CFG.heroWords : ["Versatyl"]).map((w) => w.toUpperCase());
-  const SEP = "  —  ";
+  const SEP = "   ·   ";
 
   function shuffled(list, seed) {
     const a = list.slice();
@@ -200,7 +200,7 @@
   function drawStrip() {
     const ctx = strip.getContext("2d");
     ctx.clearRect(0, 0, strip.width, strip.height);
-    ctx.font = '176px "Redband"';
+    ctx.font = '120px "Redband"';
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#fff";
     const W = strip.width;
@@ -282,9 +282,9 @@
         vec3 nuit = vec3(0.055, 0.004, 0.094);
         vec3 fuchsia = vec3(0.93, 0.0, 0.71);
         vec3 lavande = vec3(0.73, 0.45, 0.78);
-        vec3 ink = mod(row, 2.0) < 0.5 ? fuchsia * 0.9 : lavande * 0.5;
+        vec3 ink = mod(row, 2.0) < 0.5 ? fuchsia * 0.5 : lavande * 0.32;
         float centre = length((vUv - 0.5) * vec2(uAspect, 1.0));
-        float dim = mix(0.32, 1.0, smoothstep(0.15, 0.75, centre));
+        float dim = mix(0.25, 0.85, smoothstep(0.15, 0.8, centre));
         vec3 col = mix(nuit, ink, a * dim);
 
         // intro : neige de pixels qui se résout
@@ -292,7 +292,7 @@
         if (k > 0.001) {
           vec2 cell = floor(vUv * vec2(150.0, 90.0) / (1.0 + k * 3.0));
           float nz = hash(cell + floor(uTime * 16.0));
-          vec3 snow = mix(nuit, fuchsia, step(0.5, nz));
+          vec3 snow = mix(nuit, fuchsia * 0.35, step(0.5, nz));
           col = mix(col, snow, step(hash(cell * 1.31 + 7.0), k));
         }
         gl_FragColor = vec4(col, 1.0);
@@ -539,7 +539,7 @@
     renderer.setSize(w, h, false);
     camera.aspect = w / h; camera.updateProjectionMatrix();
     bgUniforms.uAspect.value = w / h;
-    bgUniforms.uRows.value = w / h < 0.8 ? 7 : 5;
+    bgUniforms.uRows.value = Math.max(10, Math.min(20, Math.round(h / 56)));
     const vh = 2 * camera.position.z * Math.tan((camera.fov * Math.PI) / 360);
     const vw = vh * camera.aspect;
     const s = Math.min(vw * (camera.aspect < 1 ? 1.1 : 0.9), vh * 1.55);

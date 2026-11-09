@@ -75,6 +75,43 @@
     $$(".reveal").forEach((el) => io.observe(el));
   } else $$(".reveal").forEach((el) => el.classList.add("is-in"));
 
+  /* ---------- manifeste : les mots s'allument au fil du scroll ---------- */
+  const scrub = $(".manifesto-text[data-scrub]");
+  if (scrub) {
+    const sec = scrub.closest(".manifesto");
+    const split = (node) => {
+      [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach((part) => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) frag.appendChild(document.createTextNode(part));
+            else { const sp = document.createElement("span"); sp.className = "w"; sp.textContent = part; frag.appendChild(sp); }
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) split(n);
+      });
+    };
+    split(scrub);
+    const words = $$(".w", scrub);
+    let lastN = -1;
+    const update = () => {
+      const r = sec.getBoundingClientRect();
+      const run = Math.max(1, r.height - innerHeight);
+      const p = reduce ? 1 : Math.min(1, Math.max(0, -r.top / run));
+      sec.style.setProperty("--mp", p.toFixed(3));
+      const n = Math.round(Math.min(1, p / 0.8) * words.length);
+      if (n !== lastN) {
+        words.forEach((w, i) => w.classList.toggle("on", i < n));
+        sec.classList.toggle("is-done", n >= words.length);
+        lastN = n;
+      }
+    };
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
+
   /* ---------- vidéos : chargées et lancées seulement quand elles sont visibles ----------
      <video data-src="..."> (ou section.concept[data-video]) */
   const lazyVideos = $$("video[data-src]");
