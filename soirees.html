@@ -15,7 +15,8 @@
   <link rel="preload" href="assets/fonts/Redband-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/GoodTimesRg-Bold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="css/style.css?v=15">
-  <link rel="stylesheet" href="css/soirees.css?v=7">
+  <link rel="stylesheet" href="css/leaflet.css?v=1.9.4">
+  <link rel="stylesheet" href="css/soirees.css?v=8">
 </head>
 <body class="page page--soirees">
 
@@ -79,7 +80,11 @@
 <main class="page-top" id="top">
 
   <!-- ============ HERO ============ -->
-  <section class="sv-hero" aria-labelledby="sv-title">
+  <section class="sv-hero" aria-labelledby="sv-title" data-cursor="Carte">
+    <div class="sv-map" id="sv-map" role="region" aria-label="Carte des soirées Versatyl à Marseille"></div>
+    <div class="sv-map-veil" aria-hidden="true"></div>
+    <button type="button" class="sv-map-back btn" hidden>‹ Retour</button>
+    <p class="sv-map-hint" aria-hidden="true"><span class="hud-chev">›››</span> Clique sur la carte</p>
     <video class="sv-hero-video" muted playsinline loop preload="none" poster="assets/video/soirees/absolem-24-01.jpg" data-src="assets/video/soirees/absolem-24-01.mp4" aria-hidden="true"></video>
     <div class="sv-hero-inner">
       <span class="hud-label"><span class="hud-chev">›››</span> Versatyl // Soirées</span>
@@ -109,7 +114,7 @@
     </div>
 
     <div class="up-grid">
-      <article class="up-card up-card--next" id="date-2026-11-20" data-date="2026-11-20" data-cursor="Soirée">
+      <article class="up-card up-card--next" id="date-2026-11-20" data-date="2026-11-20" data-venue="traverse" data-cursor="Soirée">
         <div class="up-top">
           <span class="up-badge">Prochaine date</span>
           <span class="up-count"></span>
@@ -130,7 +135,7 @@
         </div>
       </article>
 
-      <article class="up-card" id="date-2026-12-04" data-date="2026-12-04" data-cursor="Soirée">
+      <article class="up-card" id="date-2026-12-04" data-date="2026-12-04" data-venue="florida" data-cursor="Soirée">
         <div class="up-top">
           <span class="up-place">Florida Palace</span>
           <span class="up-count"></span>
@@ -151,7 +156,7 @@
         </div>
       </article>
 
-      <article class="up-card" id="date-2026-12-12" data-date="2026-12-12" data-cursor="Soirée">
+      <article class="up-card" id="date-2026-12-12" data-date="2026-12-12" data-venue="estaminet" data-cursor="Soirée">
         <div class="up-top">
           <span class="up-place">L'Estaminet</span>
           <span class="up-count"></span>
@@ -172,7 +177,7 @@
         </div>
       </article>
 
-      <article class="up-card" id="date-2027-01-08" data-date="2027-01-08" data-cursor="Soirée">
+      <article class="up-card" id="date-2027-01-08" data-date="2027-01-08" data-venue="absolem" data-cursor="Soirée">
         <div class="up-top">
           <span class="up-place">Absolem</span>
           <span class="up-count"></span>
@@ -605,6 +610,8 @@
 
 <script src="js/config.js?v=8"></script>
 <script src="js/main.js?v=9"></script>
+<script src="js/vendor/leaflet.js?v=1.9.4"></script>
 <script src="js/soirees.js?v=1"></script>
+<script src="js/soirees-map.js?v=1"></script>
 </body>
 </html>
