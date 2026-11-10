@@ -67,11 +67,12 @@
     });
   }
 
-  /* ---------- vignettes du hero : dérive au scroll + déplacement à la souris ----------
+  /* ---------- vignettes du hero ----------
      L'arrivée en rotation est en CSS (hero-card-in). Ici :
-     --p (0 → 1) suit le scroll du hero, les vignettes dérivent et tournent avec lui ;
-     --x / --y / --t suivent la souris quand on attrape une vignette.
-     Au doigt, les vignettes restent de simples liens (sinon on ne pourrait plus scroller). */
+     - à la souris, elles sont posées au hasard dans le hero à chaque chargement ;
+     - --p (0 → 1) suit le scroll du hero, elles dérivent et tournent avec lui ;
+     - on les attrape à la souris (--x / --y / --t), et lâchées elles gardent leur élan.
+     Au doigt, elles restent rangées et sont de simples liens (sinon on ne pourrait plus scroller). */
   const heroCards = $$(".hero-card");
   const heroEl = $(".hero");
   if (heroCards.length && heroEl) {
@@ -84,41 +85,137 @@
       drift();
     }
     const clamp = (v, a, b) => Math.min(Math.max(v, a), Math.max(a, b));
+    const FRICTION = 0.945;  // vitesse gardée à chaque image (60/s) une fois lâchée : plus haut = glisse plus loin
+    const BOUNCE = 0.5;      // part de la vitesse rendue quand la vignette tape un bord du hero
+    const FOLLOW = 0.4;      // souplesse du suivi de la souris : plus bas = vignette plus lourde
+    const MAX_SPEED = 3.2;   // px par milliseconde
+    const EDGE = 12;         // marge gardée avec les bords du hero
+    const barH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--bar-h")) || 46;
     let topZ = 5;
-    heroCards.forEach((card) => {
-      let id = null, sx = 0, sy = 0, ox = 0, oy = 0, x = 0, y = 0, lastX = 0, tilt = 0, moved = false, box = null;
-      card.addEventListener("dragstart", (e) => e.preventDefault());
-      card.addEventListener("pointerdown", (e) => {
-        if (e.pointerType !== "mouse" || e.button !== 0) return;
-        id = e.pointerId; sx = lastX = e.clientX; sy = e.clientY; ox = x; oy = y; moved = false; tilt = 0;
-        // limites : la vignette reste dans le hero, sous la barre du haut
-        const r = card.getBoundingClientRect(), h = heroEl.getBoundingClientRect();
-        const bar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--bar-h")) || 46;
-        box = { x0: ox + h.left - r.left, x1: ox + h.right - r.right, y0: oy + Math.max(h.top, 0) + bar - r.top, y1: oy + h.bottom - r.bottom };
-        card.setPointerCapture(id);
-      });
-      card.addEventListener("pointermove", (e) => {
-        if (e.pointerId !== id) return;
-        const dx = e.clientX - sx, dy = e.clientY - sy;
-        if (!moved) {
-          if (Math.hypot(dx, dy) < 6) return;
-          moved = true; card.classList.add("is-drag"); card.style.zIndex = String(++topZ);
-        }
-        x = clamp(ox + dx, box.x0, box.x1); y = clamp(oy + dy, box.y0, box.y1);
-        // la vignette penche dans le sens du geste
-        tilt += (clamp((e.clientX - lastX) * 1.2, -14, 14) - tilt) * 0.35; lastX = e.clientX;
+    const vignettes = heroCards.map((card) => {
+      let id = null, held = false, moved = false, raf = 0, prevT = 0, box = null;
+      let sx = 0, sy = 0, ox = 0, oy = 0;      // départ du geste (souris, vignette)
+      let x = 0, y = 0, gx = 0, gy = 0;        // position de la vignette, position visée
+      let vx = 0, vy = 0, tilt = 0;            // vitesse (px/ms) et inclinaison (deg)
+      const apply = () => {
         card.style.setProperty("--x", x.toFixed(1) + "px");
         card.style.setProperty("--y", y.toFixed(1) + "px");
         card.style.setProperty("--t", tilt.toFixed(2) + "deg");
+      };
+      // place d'origine dans la page (sans les déplacements ni l'animation d'arrivée)
+      // et déplacements permis pour rester dans le hero, sous la barre du haut
+      const bounds = () => {
+        const o = card.offsetParent.getBoundingClientRect(), h = heroEl.getBoundingClientRect();
+        const l = o.left + card.offsetLeft, t = o.top + card.offsetTop, w = card.offsetWidth, ht = card.offsetHeight;
+        return { l, t, w, h: ht, x0: h.left + EDGE - l, x1: h.right - EDGE - l - w, y0: h.top + barH() + EDGE - t, y1: h.bottom - EDGE - t - ht };
+      };
+      // une seule boucle : elle suit la souris tant qu'on tient la vignette,
+      // puis la laisse glisser sur son élan, freiner et rebondir sur les bords
+      const tick = (t) => {
+        const dt = Math.min(34, Math.max(1, t - prevT)); prevT = t;
+        const k = dt / 16.7;
+        if (held) {
+          const nx = x + (gx - x) * Math.min(1, FOLLOW * k), ny = y + (gy - y) * Math.min(1, FOLLOW * k);
+          vx += ((nx - x) / dt - vx) * 0.5; vy += ((ny - y) / dt - vy) * 0.5;
+          x = nx; y = ny;
+        } else {
+          x += vx * dt; y += vy * dt;
+          const x1 = Math.max(box.x0, box.x1), y1 = Math.max(box.y0, box.y1);
+          if (x < box.x0) { x = box.x0; vx = -vx * BOUNCE; } else if (x > x1) { x = x1; vx = -vx * BOUNCE; }
+          if (y < box.y0) { y = box.y0; vy = -vy * BOUNCE; } else if (y > y1) { y = y1; vy = -vy * BOUNCE; }
+          const f = Math.pow(FRICTION, k); vx *= f; vy *= f;
+        }
+        // la vignette penche dans le sens de sa vitesse et se redresse en s'arrêtant
+        tilt += (clamp(vx * 16, -18, 18) - tilt) * Math.min(1, 0.22 * k);
+        if (held || Math.hypot(vx, vy) > 0.015 || Math.abs(tilt) > 0.2) { apply(); raf = requestAnimationFrame(tick); return; }
+        raf = 0; vx = vy = tilt = 0; apply(); card.classList.remove("is-glide");
+      };
+      const start = () => { if (!raf) { prevT = performance.now(); raf = requestAnimationFrame(tick); } };
+
+      card.addEventListener("dragstart", (e) => e.preventDefault());
+      card.addEventListener("pointerdown", (e) => {
+        if (e.pointerType !== "mouse" || e.button !== 0) return;
+        // on rattrape une vignette en plein vol : elle s'arrête net et le clic n'ouvre pas le lien
+        const caught = !!raf;
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }
+        card.classList.remove("is-glide");
+        vx = vy = 0;
+        id = e.pointerId; held = true; moved = caught;
+        sx = e.clientX; sy = e.clientY; ox = gx = x; oy = gy = y;
+        box = bounds();
+        try { card.setPointerCapture(id); } catch (err) { /* pointeur déjà relâché */ }
+        if (caught) { card.classList.add("is-drag"); start(); }
+      });
+      card.addEventListener("pointermove", (e) => {
+        if (e.pointerId !== id || !held) return;
+        const dx = e.clientX - sx, dy = e.clientY - sy;
+        if (!moved) {
+          if (Math.hypot(dx, dy) < 6) return;
+          moved = true;
+        }
+        if (!card.classList.contains("is-drag")) { card.classList.add("is-drag"); card.style.zIndex = String(++topZ); }
+        gx = clamp(ox + dx, box.x0, box.x1); gy = clamp(oy + dy, box.y0, box.y1);
+        start();
       });
       const drop = (e) => {
         if (e.pointerId !== id) return;
-        id = null; card.classList.remove("is-drag"); card.style.setProperty("--t", "0deg");
+        id = null; held = false;
+        if (!card.classList.contains("is-drag")) return;
+        card.classList.remove("is-drag");
+        if (reduce) { x = gx; y = gy; vx = vy = 0; }
+        else {
+          const sp = Math.hypot(vx, vy);
+          if (sp > MAX_SPEED) { vx *= MAX_SPEED / sp; vy *= MAX_SPEED / sp; }
+          card.classList.add("is-glide");
+        }
+        start();
       };
       card.addEventListener("pointerup", drop);
       card.addEventListener("pointercancel", drop);
       // après un déplacement, le clic qui suit ne doit pas ouvrir le lien
       card.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } });
+
+      return {
+        card, bounds,
+        place(nx, ny) { x = gx = nx; y = gy = ny; apply(); },
+        // fenêtre redimensionnée : la vignette revient dans le hero si elle en est sortie
+        refit() { if (held || raf) return; const b = bounds(); x = gx = clamp(x, b.x0, b.x1); y = gy = clamp(y, b.y0, b.y1); apply(); }
+      };
+    });
+
+    /* posées au hasard : à chaque chargement, chaque vignette prend une place libre du hero
+       (ni sur une autre vignette, ni sur le compteur de clips), avec une légère rotation.
+       Seulement à la souris et sur grand écran : là où on peut ensuite les déplacer. */
+    const canScatter = () => finePointer && window.innerWidth > 820;
+    let scattered = false;
+    if (canScatter()) {
+      scattered = true;
+      const GAP = 16;
+      const taken = [".hero-hud", ".hero-scroll"].map((sel) => $(sel, heroEl)).filter(Boolean).map((el) => el.getBoundingClientRect());
+      const overlaps = (r) => taken.some((o) => r.left < o.right + GAP && r.right > o.left - GAP && r.top < o.bottom + GAP && r.bottom > o.top - GAP);
+      // la plus grande d'abord : c'est elle qui a le plus de mal à trouver une place
+      vignettes.slice().sort((a, b) => b.card.offsetWidth - a.card.offsetWidth).forEach((v) => {
+        const b = v.bounds();
+        const rectAt = (dx, dy) => ({ left: b.l + dx, top: b.t + dy, right: b.l + dx + b.w, bottom: b.t + dy + b.h });
+        let spot = null;
+        for (let i = 0; i < 120 && !spot; i++) {
+          const dx = b.x0 + Math.random() * Math.max(0, b.x1 - b.x0), dy = b.y0 + Math.random() * Math.max(0, b.y1 - b.y0);
+          if (!overlaps(rectAt(dx, dy))) spot = { dx, dy };
+        }
+        if (!spot) { taken.push(rectAt(0, 0)); return; }   // aucune place libre : elle garde sa place d'origine
+        taken.push(rectAt(spot.dx, spot.dy));
+        v.place(spot.dx, spot.dy);
+        v.card.style.setProperty("--r", (Math.random() * 14 - 7).toFixed(1) + "deg");
+      });
+    }
+    let fitT;
+    window.addEventListener("resize", () => {
+      clearTimeout(fitT);
+      fitT = setTimeout(() => {
+        // passage en petit écran : elles retournent se ranger en bas
+        if (scattered && !canScatter()) { scattered = false; vignettes.forEach((v) => v.place(0, 0)); }
+        else vignettes.forEach((v) => v.refit());
+      }, 150);
     });
   }
 
