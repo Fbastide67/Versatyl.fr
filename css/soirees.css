@@ -8,30 +8,14 @@
 .sv-h2 { font-size: var(--h-section); text-shadow: none; }
 
 /* ---------- hero ---------- */
-/* Le clip néon « WE'RE ALL MAD HERE » contient du texte : il vit dans un
-   bandeau en haut du hero (--sv-band), le titre et le reste commencent
-   toujours en dessous → jamais de texte HTML posé sur le texte du néon. */
 .sv-hero {
-  --sv-band: clamp(110px, 11vw, 170px);
   position: relative; isolation: isolate; overflow: hidden;
   min-height: calc(100vh - var(--bar-h)); min-height: calc(100svh - var(--bar-h));
   display: flex; align-items: flex-end;
-  padding: calc(var(--sv-band) + clamp(14px, 2vw, 28px)) var(--gutter) clamp(48px, 6vw, 90px);
+  padding: clamp(40px, 6vw, 90px) var(--gutter) clamp(48px, 6vw, 90px);
   background:
-    radial-gradient(70% 45% at 50% 0%, rgba(180, 10, 30, .22), transparent 70%),
     radial-gradient(60% 60% at 0% 100%, rgba(152, 6, 184, .28), transparent 70%),
     var(--nuit);
-}
-.sv-hero-video {
-  position: absolute; top: 0; left: 0; right: 0; z-index: -2;
-  width: 100%; height: var(--sv-band); object-fit: cover; object-position: 50% 46%;
-  opacity: .9;
-}
-.sv-hero::before {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: var(--sv-band); z-index: -1; pointer-events: none;
-  background:
-    linear-gradient(0deg, var(--nuit) 0%, transparent 40%, transparent 85%, rgba(14, 1, 24, .6) 100%),
-    linear-gradient(90deg, var(--nuit) 0%, transparent 10%, transparent 90%, var(--nuit) 100%);
 }
 .sv-hero-inner { display: flex; flex-direction: column; align-items: flex-start; gap: clamp(16px, 2vw, 26px); max-width: 1200px; min-width: 0; }
 .sv-hero-title {
@@ -43,18 +27,6 @@
   font: 700 clamp(15px, 1.8vw, 24px)/1.45 var(--f-ui); text-transform: uppercase; letter-spacing: .02em;
   color: var(--blanc);
 }
-.sv-stats {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(4, auto); justify-content: start;
-  border-top: 1px solid rgba(237, 1, 182, .6); border-bottom: 1px solid rgba(237, 1, 182, .6);
-}
-.sv-stats li { display: grid; gap: 6px; padding: 14px clamp(16px, 2.4vw, 36px) 14px 0; }
-.sv-stats li + li { padding-left: clamp(16px, 2.4vw, 36px); border-left: 1px solid rgba(237, 1, 182, .35); }
-.sv-stats b {
-  font: 900 clamp(28px, 4vw, 58px)/1 var(--f-ui); color: var(--blanc); letter-spacing: -.01em;
-  text-shadow: 3px 3px 0 var(--violet-neon);
-}
-.sv-stats span { font: 700 11px/1.3 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--texte-doux); }
 .sv-hero .section-actions { margin-top: 6px; }
 
 /* ---------- carte de Marseille derrière le hero ---------- */
@@ -72,7 +44,6 @@
     linear-gradient(0deg, rgba(14, 1, 24, .75) 0%, transparent 45%);
   transition: opacity .6s ease;
 }
-.sv-hero-video, .sv-hero::before { transition: opacity .6s ease; }
 .sv-hero-inner { transition: opacity .5s ease, transform .6s cubic-bezier(.2, .7, .2, 1); }
 .sv-map-hint {
   position: absolute; right: var(--gutter); bottom: clamp(18px, 3vw, 34px); margin: 0;
@@ -88,8 +59,6 @@
 .sv-hero.is-map { cursor: auto; }
 .sv-hero.is-map .sv-map { z-index: 1; }
 .sv-hero.is-map .sv-map-veil,
-.sv-hero.is-map .sv-hero-video,
-.sv-hero.is-map::before,
 .sv-hero.is-map .sv-map-hint { opacity: 0; }
 .sv-hero.is-map .sv-hero-inner { opacity: 0; transform: translateY(24px); pointer-events: none; visibility: hidden; transition: opacity .5s ease, transform .6s ease, visibility 0s .6s; }
 
@@ -132,24 +101,85 @@
 .mp-where { margin: 0 0 12px; font: 700 10px/1.3 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--texte-doux); }
 .mp-h { margin: 12px 0 6px; font: 700 10px/1 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--fuchsia); }
 .mp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-.mp-list a {
+.mp-list a, .mp-row {
   display: block; padding: 7px 8px; color: var(--texte); text-decoration: none;
   font: 400 13px/1.35 system-ui, sans-serif; border-left: 2px solid rgba(237, 1, 182, .3);
 }
-.mp-list a:hover, .mp-list a:focus-visible { background: rgba(237, 1, 182, .14); border-left-color: var(--fuchsia); color: var(--blanc); }
+.mp-list a:hover, .mp-list a:focus-visible, .mp-row:hover, .mp-row:focus-visible { background: rgba(237, 1, 182, .14); border-left-color: var(--fuchsia); color: var(--blanc); }
 .mp-list b { font: 700 11px/1 var(--f-ui); color: var(--pilule); margin-right: 6px; }
-.mp-list--up a { border-left-color: var(--fuchsia); background: rgba(237, 1, 182, .08); }
+.mp-list--up a, .mp-list--up .mp-row { border-left-color: var(--fuchsia); background: rgba(237, 1, 182, .08); }
+.mp-row { width: 100%; text-align: left; background: none; border-top: 0; border-right: 0; border-bottom: 0; cursor: pointer; }
+
+/* aperçu au survol d'une date */
+.ev-peek {
+  position: fixed; top: 0; left: 0; z-index: 1200; width: 230px; pointer-events: none;
+  background: var(--nuit); border: 1px solid var(--fuchsia); box-shadow: 0 0 24px rgba(237, 1, 182, .35);
+  opacity: 0; transition: opacity .18s ease;
+}
+.ev-peek.is-on { opacity: 1; }
+.ev-peek-visual { aspect-ratio: 4 / 5; overflow: hidden; background: var(--aubergine, #1a0328); }
+.ev-peek-visual img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ev-peek-body { padding: 10px 12px 12px; display: grid; gap: 4px; }
+.ev-peek .ev-name { font-size: 13px; }
+.ev-peek .ev-tags { margin-top: 4px; }
+.ev-peek-hint { margin: 4px 0 0; font: 700 9px/1 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--fuchsia); }
+@media (max-height: 560px) { .ev-peek-visual { aspect-ratio: 16 / 9; } }
+
+/* infos communes */
+.ev-date { margin: 0; font: 700 10px/1.3 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--lavande); }
+.ev-count { color: var(--fuchsia); }
+.ev-name { margin: 0; font: 700 15px/1.3 var(--f-ui); text-transform: uppercase; color: var(--blanc); }
+.ev-venue { margin: 0; font: 700 11px/1.35 var(--f-ui); letter-spacing: .04em; text-transform: uppercase; color: var(--blanc); }
+.ev-venue span { display: block; margin-top: 2px; font-size: 9px; letter-spacing: .1em; color: var(--texte-doux); }
+.ev-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; }
+.ev-tags li { font: 700 9px/1 var(--f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--nuit); background: var(--pilule); padding: 5px 7px; border-radius: 4px; }
+.ev-noposter {
+  display: grid; place-content: center; gap: 10px; height: 100%; padding: 16px; text-align: center;
+  background: radial-gradient(80% 70% at 50% 40%, rgba(237, 1, 182, .45), transparent 70%), var(--nuit);
+}
+.ev-noposter b { font: 400 clamp(40px, 6vw, 64px)/1.2 var(--f-display); color: var(--blanc); text-shadow: 3px 3px 0 var(--violet-profond); }
+.ev-noposter span { font: 700 12px/1.3 var(--f-ui); text-transform: uppercase; letter-spacing: .06em; color: var(--pilule); }
+
+/* la soirée au milieu de l'écran */
+html.ev-lock { overflow: hidden; }
+.ev-modal { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 16px; }
+.ev-modal[hidden] { display: none; }
+.ev-modal-back { position: absolute; inset: 0; background: rgba(14, 1, 24, .82); backdrop-filter: blur(4px); opacity: 0; transition: opacity .25s ease; }
+.ev-modal-box {
+  position: relative; width: min(860px, 100%); max-height: calc(100svh - 32px); overflow: auto;
+  background: var(--nuit); border: 1px solid var(--fuchsia); box-shadow: 0 0 40px rgba(237, 1, 182, .4);
+  opacity: 0; transform: scale(.94) translateY(10px); transition: opacity .25s ease, transform .3s cubic-bezier(.2, .7, .2, 1);
+  outline: none;
+}
+.ev-modal.is-on .ev-modal-back { opacity: 1; }
+.ev-modal.is-on .ev-modal-box { opacity: 1; transform: none; }
+.ev-modal-content { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+.ev-modal-visual { aspect-ratio: 4 / 5; background: var(--aubergine, #1a0328); }
+.ev-modal-visual img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ev-modal-body { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: clamp(20px, 3vw, 36px); min-width: 0; }
+.ev-modal-date { margin: 4px 0 0; font: 400 clamp(44px, 6vw, 72px)/1.2 var(--f-display); color: var(--fuchsia); text-shadow: 3px 3px 0 var(--violet-profond); }
+.ev-modal-name { margin: 0; font: 700 clamp(18px, 2.2vw, 26px)/1.25 var(--f-ui); text-transform: uppercase; color: var(--blanc); overflow-wrap: anywhere; }
+.ev-modal-body .ev-date { font-size: 11px; }
+.ev-modal-body .ev-venue { font-size: 13px; }
+.ev-modal-body .ev-venue span { font-size: 10px; }
+.ev-info { margin: 0; font-size: 13px; line-height: 1.7; color: var(--texte-doux); }
+.ev-modal-actions { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; gap: 10px; }
+.ev-modal-x {
+  position: absolute; top: 10px; right: 10px; z-index: 1; width: 40px; height: 40px;
+  display: grid; place-items: center; font: 400 26px/1 system-ui, sans-serif; color: var(--blanc);
+  background: rgba(14, 1, 24, .8); border: 1px solid var(--fuchsia); cursor: pointer;
+}
+.ev-modal-x:hover, .ev-modal-x:focus-visible { background: var(--fuchsia); color: var(--nuit); }
+@media (max-width: 640px) {
+  .ev-modal-content { grid-template-columns: minmax(0, 1fr); }
+  .ev-modal-visual { aspect-ratio: 4 / 3; }
+}
+@media (prefers-reduced-motion: reduce) { .ev-modal-box, .ev-modal-back, .ev-peek { transition: none; } }
 .sv-map .leaflet-control-attribution { background: rgba(14, 1, 24, .7); color: var(--texte-doux); font-size: 9px; }
 .sv-map .leaflet-control-attribution a { color: var(--texte-doux); }
 .sv-map .leaflet-bar a { background: var(--nuit); color: var(--blanc); border-color: rgba(237, 1, 182, .5); border-radius: 0 !important; }
 .sv-map .leaflet-bar { border: 1px solid var(--fuchsia); border-radius: 0; }
 @media (max-width: 640px) { .sv-map-hint { display: none; } }
-@media (max-width: 640px) {
-  .sv-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
-  .sv-stats li, .sv-stats li + li { padding: 14px 12px 14px 0; border-left: 0; }
-  .sv-stats li:nth-child(even) { padding-left: 14px; border-left: 1px solid rgba(237, 1, 182, .35); }
-  .sv-stats li:nth-child(n+3) { border-top: 1px solid rgba(237, 1, 182, .35); }
-}
 
 /* ---------- à venir ---------- */
 .sv-upcoming {
