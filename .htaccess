@@ -1,0 +1,18 @@
+# ==========================================================
+# VERSATYL — accès protégé par mot de passe (site en construction)
+# Sans le cookie d'accès, toute page du site affiche acces.php.
+# Pour rouvrir le site à tout le monde : supprimer ce fichier (et acces.php), puis publier.
+# La boutique (/shopping) n'est pas concernée.
+# ==========================================================
+DirectoryIndex index.html
+RewriteEngine On
+
+# laisser passer la page d'accès, ses ressources et la boutique
+RewriteRule ^acces\.php$ - [L]
+RewriteRule ^assets/fonts/ - [L]
+RewriteRule ^assets/img/(logo-versatyl\.svg|chauve-souris\.png|apple-touch-icon\.png)$ - [L]
+RewriteRule ^shopping(/|$) - [L]
+
+# sans le bon cookie : page « site en construction »
+RewriteCond %{HTTP_COOKIE} !(^|;\s*)vt_acces=517fa6058b8554662da6d51ad825a40c(;|$)
+RewriteRule ^ acces.php [L]
