@@ -18,20 +18,21 @@ const END = "<!-- SHOTGUN:FIN -->";
 
 // Nom du lieu sur Shotgun → clé utilisée par la carte de Marseille (js/soirees-map.js)
 const VENUES = [
-  [/absolem/i, "absolem", "Absolem", "Club · Marseille 2e"],
-  [/danceteria/i, "danceteria", "Danceteria", "Club · Marseille 1er"],
+  [/absolem|voûtes de la major|voutes de la major/i, "absolem", "Absolem", "Club · Marseille 2e"],
+  [/danceteria|18,? rue saint-sa/i, "danceteria", "Danceteria", "Club · Marseille 1er"],
   [/man\s?ray/i, "manray", "Manray", "Club · Marseille 1er"],
-  [/balkis|traverse/i, "traverse", "La Traverse des Balkis", "Bar · Marseille 6e"],
-  [/nucl[ée]aire/i, "nucleaire", "Le Nucléaire", "Bar · Marseille 6e"],
+  [/balkis|traverse|trois rois/i, "traverse", "La Traverse des Balkis", "Bar · Marseille 6e"],
+  [/nucl[ée]aire|poggioli/i, "nucleaire", "Le Nucléaire", "Bar · Marseille 6e"],
   [/estaminet/i, "estaminet", "L'Estaminet", "Club · Marseille 6e"],
-  [/florida/i, "florida", "Florida Palace", "Salle · Marseille 10e"]
+  [/florida|mireille lauze/i, "florida", "Florida Palace", "Salle · Marseille 10e"]
 ];
 const JOURS = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
 
 const raw = JSON.parse(readFileSync("shotgun-events.json", "utf8"));
 const list = Array.isArray(raw) ? raw : raw.data || raw.events || raw.items || raw.results || [];
 if (!Array.isArray(list)) throw new Error("Réponse Shotgun inattendue : pas de liste d'événements.");
-if (list[0]) console.log("Champs d'un événement Shotgun :", Object.keys(list[0]).join(", "));
+console.log(`Shotgun : ${list.length} événement(s) à venir reçu(s).`);
+for (const e of list) console.log(`  - ${e.startTime || "?"} ${e.name || "?"} @ ${(e.geolocation && e.geolocation.street) || "?"}`);
 
 const pick = (o, ...keys) => { for (const k of keys) { const v = k.split(".").reduce((x, p) => (x == null ? x : x[p]), o); if (v) return v; } return ""; };
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -49,12 +50,16 @@ const outside = html.slice(0, a) + html.slice(b);
 const handDates = new Set([...outside.matchAll(/class="up-card[^"]*"[^>]*data-date="(\d{4}-\d{2}-\d{2})"/g)].map((m) => m[1]));
 
 const events = list
-  .filter((e) => !pick(e, "cancelledAt", "canceledAt", "deletedAt") && e.isPublished !== false && e.published !== false)
+  // l'API renvoie publishedAt (null = brouillon) et cancelledAt (rempli = annulé)
+  .filter((e) => !pick(e, "cancelledAt", "canceledAt", "deletedAt") && !("publishedAt" in e && !e.publishedAt))
   .map((e) => {
     const start = new Date(pick(e, "startTime", "startDate", "start_time", "startsAt", "start"));
     if (isNaN(start)) return null;
-    const venueTxt = strip(pick(e, "geolocation.venue", "venue.name", "venue", "location.name", "place.name", "address"));
-    const v = VENUES.find(([re]) => re.test(venueTxt) || re.test(pick(e, "name", "title")));
+    // Shotgun donne l'adresse (geolocation.street), pas toujours le nom du lieu :
+    // on cherche le lieu dans le nom du lieu, l'adresse et le nom de l'événement
+    const venueTxt = strip(pick(e, "geolocation.venue", "venue.name", "venue", "location.name", "place.name"));
+    const where = [venueTxt, pick(e, "geolocation.street"), pick(e, "name", "title")].join(" ");
+    const v = VENUES.find(([re]) => re.test(where));
     const slug = pick(e, "slug");
     return {
       date: parisDay(start),
