@@ -40,10 +40,12 @@
   });
   document.querySelectorAll(".arch-card[data-venue]").forEach((c) => {
     const t = c.querySelector("time");
-    const link = c.querySelector("a.event-link");
+    // la page de la soirée en priorité, sinon la page Shotgun
+    const page = c.querySelector("a.event-link--page");
+    const link = page || c.querySelector("a.event-link");
     push(c.dataset.venue, {
       date: t ? t.getAttribute("datetime") : "", label: t ? t.textContent.trim() : "",
-      name: text(c, ".event-name"), href: link ? link.href : "#archives", ext: !!link, upcoming: false
+      name: text(c, ".event-name"), href: link ? link.href : "#archives", ext: !!link && !page, upcoming: false
     });
   });
   Object.values(events).forEach((l) => l.sort((a, b) => (a.upcoming === b.upcoming ? 0 : a.upcoming ? -1 : 1) || (a.upcoming ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date))));
