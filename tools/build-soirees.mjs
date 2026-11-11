@@ -39,26 +39,25 @@ function info(s) {
 /* ---------- le défilé de cartes ---------- */
 function cards(s, I) {
   // les mots écrits en gros sous chaque carte
-  const words = [I.short, I.v.name.replace(/^(L'|La |Le )/, ""), ...s.lineup.map((l) => l[0]), ...s.tags, "Versatyl"]
-    .filter((w, i, a) => a.indexOf(w) === i);
   const pics = I.photos.length ? I.photos : [];
+  const posters = [I.poster, s.poster2 ? `../assets/img/affiches/${s.poster2}` : ""].filter(Boolean);
   const n = Math.max(8, pics.length);
   const rows = [[], [], []];
   for (let i = 0; i < n * 3 && i < 36; i++) {
     const r = i % 3, k = Math.floor(i / 3);      // rangée, position dans la rangée
     const pic = pics.length ? pics[(k + r * Math.ceil(pics.length / 3)) % pics.length] : "";
-    const usePoster = I.poster && (!pics.length ? (k + r) % 3 === 1 : (k + r * 2) % 9 === 4);
-    const word = words[(k + r * 3) % words.length];
+    const usePoster = posters.length && (!pics.length ? (k + r) % 3 === 1 : (k + r * 2) % 9 === 4);
+    const poster = posters[(k + r) % posters.length];
     const rot = ((i * 37) % 9) - 4;              // -4° → +4°
     const dy = ((i * 53) % 5) * 6 - 12;          // -12px → +12px
-    let media;
-    if (usePoster) media = `<img src="${I.poster}" alt="" loading="lazy" decoding="async">`;
-    else if (pic) media = `<img src="${pic}" alt="" loading="lazy" decoding="async">`;
-    else media = `<span class="sc-type" aria-hidden="true"><b>${esc(I.short)}</b><i>${esc(s.tags[i % s.tags.length] || "Versatyl")}</i></span>`;
-    rows[r].push(`<figure class="sc-card${usePoster ? " sc-card--poster" : ""}${!usePoster && !pic ? " sc-card--type" : ""}" style="--r:${rot}deg;--y:${dy}px">
+    const src = usePoster ? poster : pic;
+    const alt = usePoster ? `Affiche ${s.title}, ${I.short}` : `Photo de la soirée ${s.title}, ${I.short}`;
+    const media = src
+      ? `<img src="${src}" alt="${esc(alt)}" loading="lazy" decoding="async" draggable="false">`
+      : `<span class="sc-type" aria-hidden="true"><b>${esc(I.short)}</b><i>${esc(s.tags[i % s.tags.length] || "Versatyl")}</i></span>`;
+    rows[r].push(`<figure class="sc-card${usePoster ? " sc-card--poster" : ""}${src ? "" : " sc-card--type"}" style="--r:${rot}deg;--y:${dy}px"${src ? ` data-full="${src}" tabindex="0" role="button" aria-label="Agrandir : ${esc(alt)}"` : ""}>
           <div class="sc-head"><svg viewBox="0 0 867.18 358.54" aria-hidden="true"><use href="#vt-logo"/></svg><span>${esc(I.short)}</span></div>
           <div class="sc-media">${media}</div>
-          <figcaption class="sc-cap">${esc(word)}</figcaption>
         </figure>`);
   }
   return rows.map((r, i) => `<div class="sc-row" data-dir="${i % 2 ? 1 : -1}" style="--speed:${[62, 78, 70][i]}s"><div class="sc-strip">
@@ -98,7 +97,7 @@ function page(s, idx) {
   <link rel="preload" href="../assets/fonts/Redband-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="../assets/fonts/GoodTimesRg-Bold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="../css/style.css?v=15">
-  <link rel="stylesheet" href="../css/soiree.css?v=2">
+  <link rel="stylesheet" href="../css/soiree.css?v=3">
 </head>
 <body class="page page--soiree">
 
@@ -120,10 +119,11 @@ ${logo}${header}<main class="page-top" id="top">
     </figure>` : `<div class="so-poster so-poster--type" aria-hidden="true"><b>${esc(s.title)}</b><span>${esc(I.short)}</span></div>`}
   </section>
 
-  <section class="so-reel" aria-label="Souvenirs de la soirée">
+  <section class="so-reel" aria-label="Souvenirs de la soirée" data-cursor="Glisser">
     <div class="so-reel-rows">
       ${cards(s, I)}
     </div>
+    <p class="so-reel-hint"><span class="hud-chev">‹‹‹</span> Glisse les cartes · clique pour agrandir <span class="hud-chev">›››</span>${I.photos.length ? `<span class="so-credit">${I.photos.length} photo${I.photos.length > 1 ? "s" : ""}${s.credit ? " · " + esc(s.credit) : ""}</span>` : `<span class="so-credit">Photos à venir</span>`}</p>
   </section>
 
   <section class="so-section" aria-labelledby="infos-titre">
@@ -145,17 +145,6 @@ ${logo}${header}<main class="page-top" id="top">
     </ol>
   </section>` : ""}
 
-  <section class="so-section" aria-labelledby="photos-titre">
-    <div class="so-head">
-      <h2 class="so-h2 reveal" id="photos-titre">Photos</h2>
-      ${I.photos.length ? `<span class="hud-label"><span class="hud-chev">›››</span> ${I.photos.length} photo${I.photos.length > 1 ? "s" : ""}${s.credit ? " · " + esc(s.credit) : ""}</span>` : ""}
-    </div>
-    ${I.photos.length ? `<div class="so-grid">
-      ${I.photos.map((p, i) => `<button type="button" class="so-ph" data-full="${p}" data-cursor="Voir" aria-label="Agrandir la photo ${i + 1}"><img src="${p}" alt="Photo de la soirée ${esc(s.title)}, ${esc(I.short)}" loading="lazy" decoding="async"></button>`).join("\n      ")}
-    </div>` : `<p class="so-empty">Les photos de cette soirée arrivent bientôt. Tu en as&nbsp;? Envoie-les à <a data-mail href="#">versatyl.marseille@gmail.com</a>.</p>`}
-    ${s.poster2 ? `<figure class="so-poster2" data-tilt><img src="../assets/img/affiches/${s.poster2}" alt="Line-up ${esc(s.title)}" loading="lazy" decoding="async"></figure>` : ""}
-  </section>
-
   <nav class="dj-nav so-nav" aria-label="Autres soirées">
     ${prev ? `<a class="dj-nav-link dj-nav-link--prev" href="${prev.slug}.html" data-pop data-cursor="Soirée" aria-label="Soirée précédente : ${esc(prev.title)}"><span class="dj-nav-dir">‹‹‹ ${esc(info(prev).short)}</span><span class="dj-nav-name">${esc(prev.title)}</span></a>` : "<span></span>"}
     <div class="dj-nav-mid"><a class="btn" href="../soirees.html#archives">Toutes les soirées</a></div>
@@ -173,7 +162,7 @@ ${footer}<dialog class="so-lightbox" aria-label="Photo agrandie">
 
 <script src="../js/config.js?v=8"></script>
 <script src="../js/main.js?v=9"></script>
-<script src="../js/soiree.js?v=1"></script>
+<script src="../js/soiree.js?v=2"></script>
 </body>
 </html>
 `;
