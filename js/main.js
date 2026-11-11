@@ -263,51 +263,42 @@
     update();
   }
 
-  /* ---------- page collectif, nos valeurs : la section se fige et les valeurs s'écrivent
-     l'une après l'autre, mot à mot, au fil du scroll (même principe que le manifeste) ---------- */
+  /* ---------- page collectif, nos valeurs : toutes visibles en même temps ; au fil du scroll,
+     le texte de chaque valeur s'allume mot à mot (les valeurs d'une même rangée ensemble) ---------- */
   const vsSec = $("[data-scrub-values]");
   if (vsSec && !reduce) {
-    const pin = $(".vs-pin", vsSec);
+    const wrap = (node) => {
+      [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach((part) => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) frag.appendChild(document.createTextNode(part));
+            else { const sp = document.createElement("span"); sp.className = "w"; sp.textContent = part; frag.appendChild(sp); }
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) wrap(n);
+      });
+    };
     const items = $$(".values-grid li", vsSec).map((li) => {
       const p = $("p", li);
-      const wrap = (node) => {
-        [...node.childNodes].forEach((n) => {
-          if (n.nodeType === 3) {
-            const frag = document.createDocumentFragment();
-            n.textContent.split(/(\s+)/).forEach((part) => {
-              if (!part) return;
-              if (/^\s+$/.test(part)) frag.appendChild(document.createTextNode(part));
-              else { const sp = document.createElement("span"); sp.className = "w"; sp.textContent = part; frag.appendChild(sp); }
-            });
-            n.replaceWith(frag);
-          } else if (n.nodeType === 1) wrap(n);
-        });
-      };
       if (p) wrap(p);
-      return { li, words: p ? $$(".w", p) : [] };
+      return { li, words: p ? $$(".w", p) : [], last: -1 };
     });
-    if (pin && items.length) {
-      vsSec.classList.add("is-scrub");
-      pin.style.setProperty("--n", items.length);
-      let lastI = -1, lastN = -1;
-      const update = () => {
-        const r = pin.getBoundingClientRect();
-        const run = Math.max(1, r.height - innerHeight);
-        const p = Math.min(1, Math.max(0, -r.top / run)) * items.length;
-        const i = Math.min(items.length - 1, Math.floor(p));
-        const it = items[i];
-        // chaque valeur : ses mots s'allument sur les 3/4 de sa part de scroll, puis elle reste lisible
-        const n = Math.round(Math.min(1, (p - i) / 0.75) * it.words.length);
-        if (i !== lastI) {
-          items.forEach((o, k) => o.li.classList.toggle("is-active", k === i));
-          lastI = i; lastN = -1;
-        }
-        if (n !== lastN) { it.words.forEach((w, k) => w.classList.toggle("on", k < n)); lastN = n; }
-      };
-      addEventListener("scroll", update, { passive: true });
-      addEventListener("resize", update);
-      update();
-    }
+    vsSec.classList.add("is-words");
+    const update = () => {
+      const vh = innerHeight;
+      items.forEach((it) => {
+        // 0 quand le haut de la valeur entre en bas de l'écran, 1 quand il atteint le tiers haut
+        const top = it.li.getBoundingClientRect().top;
+        const p = Math.min(1, Math.max(0, (vh * 0.92 - top) / (vh * 0.55)));
+        const n = Math.round(p * it.words.length);
+        if (n !== it.last) { it.words.forEach((w, k) => w.classList.toggle("on", k < n)); it.last = n; }
+      });
+    };
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
   }
 
   /* ---------- vidéos : chargées et lancées seulement quand elles sont visibles ----------
