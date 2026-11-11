@@ -12,7 +12,21 @@
 
   /* ---------- à venir : J-x ---------- */
   const today = new Date(); today.setHours(0, 0, 0, 0);
+  // les dates ajoutées depuis Shotgun arrivent en fin de liste : on remet tout dans l'ordre
+  const grid = document.querySelector(".up-grid");
+  if (grid) $$(".up-card[data-date]", grid)
+    .sort((a, b) => a.dataset.date.localeCompare(b.dataset.date))
+    .forEach((c) => grid.appendChild(c));
   const cards = $$(".up-card[data-date]");
+  // sous-titre "N dates · mois → mois", recalculé sur les dates pas encore passées
+  const sub = document.getElementById("up-sub");
+  const iso = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  const coming = cards.map((c) => c.dataset.date).filter((d) => d >= iso(today));
+  if (sub && coming.length) {
+    const month = (d) => new Date(d + "T12:00:00").toLocaleDateString("fr-FR", { month: "long" });
+    const first = month(coming[0]), last = month(coming[coming.length - 1]);
+    sub.textContent = coming.length + (coming.length > 1 ? " dates" : " date") + " · " + (first === last ? first : first + " → " + last);
+  }
   let next = null;
   cards.forEach((card) => {
     const p = card.dataset.date.split("-").map(Number);

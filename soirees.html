@@ -108,7 +108,7 @@
     <div class="section-head">
       <h2 class="h-display sv-h2 reveal" aria-label="À venir">A venir</h2>
       <div class="section-actions">
-        <p class="section-sub">4 dates · novembre → janvier</p>
+        <p class="section-sub" id="up-sub">4 dates · novembre → janvier</p>
         <a class="btn btn--ghost" data-shotgun href="#" target="_blank" rel="noopener">Tout sur Shotgun <span aria-hidden="true">↗</span></a>
       </div>
     </div>
@@ -197,6 +197,11 @@
           <a class="btn" data-shotgun href="#" target="_blank" rel="noopener">Billetterie Shotgun <span aria-hidden="true">↗</span></a>
         </div>
       </article>
+
+      <!-- Dates ajoutées automatiquement depuis Shotgun (toutes les heures, par .github/workflows/shotgun-sync.yml).
+           Ne rien écrire entre ces deux repères : c'est réécrit à chaque synchro. -->
+      <!-- SHOTGUN:DEBUT -->
+      <!-- SHOTGUN:FIN -->
     </div>
   </section>
 
@@ -611,7 +616,7 @@
 <script src="js/config.js?v=8"></script>
 <script src="js/main.js?v=9"></script>
 <script src="js/vendor/leaflet.js?v=1.9.4"></script>
-<script src="js/soirees.js?v=1"></script>
+<script src="js/soirees.js?v=2"></script>
 <script src="js/soirees-map.js?v=1"></script>
 </body>
 </html>
