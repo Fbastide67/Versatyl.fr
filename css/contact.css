@@ -136,7 +136,7 @@
 /* ---------- safe space ---------- */
 .ct-safe {
   padding: clamp(56px, 7vw, 100px) var(--gutter);
-  background: var(--nuit); border-top: 1px solid rgba(237, 1, 182, .35);
+  background: var(--aubergine); border-top: 1px solid rgba(237, 1, 182, .35); border-bottom: 1px solid rgba(237, 1, 182, .35);
   display: grid; gap: 16px;
 }
 .ct-safe-title {

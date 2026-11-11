@@ -187,7 +187,9 @@
     center: [43.2935, 5.3800], zoom: 14, minZoom: 12, maxZoom: 16,
     zoomControl: false, attributionControl: true,
     dragging: false, scrollWheelZoom: false, doubleClickZoom: false, touchZoom: false, boxZoom: false, keyboard: false,
-    zoomSnap: 0.25
+    zoomSnap: 0.25, zoomDelta: 0.5,
+    // molette / pavé tactile : zoom plus progressif (plus de pixels de molette par niveau)
+    wheelPxPerZoomLevel: 140, wheelDebounceTime: 20
   });
   const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/";
   L.tileLayer(ESRI + "World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
@@ -208,9 +210,9 @@
       html: `<span class="mk-dot"></span><span class="mk-n">${list.length}</span><span class="mk-label">${esc(VENUES[key].name)}</span>`
     });
     const m = L.marker(VENUES[key].ll, { icon, keyboard: true, title: VENUES[key].name, riseOnHover: true })
-      .bindPopup(() => popupHtml(key), { className: "mp-pop", maxWidth: 300, minWidth: 220, autoPanPadding: [24, 70] })
+      .bindPopup(() => popupHtml(key), { className: "mp-pop", maxWidth: 300, minWidth: 220, autoPan: false })
       .addTo(map);
-    m.on("click", () => { if (!open) enter(); });
+    m.on("click", () => { if (!open) enter(true); });
     m.on("mouseover", () => { if (open && !m.isPopupOpen()) m.openPopup(); });
     markers[key] = m;
   });
@@ -224,7 +226,7 @@
   const OUT_ZOOM = 12.5;    // à ce niveau de dézoom, on ressort de la carte
   const H = ["dragging", "doubleClickZoom", "touchZoom", "boxZoom", "keyboard"];
 
-  function enter() {
+  function enter(stay) {
     if (open) return;
     open = true; busy = true;
     quietUntil = performance.now() + 700;
@@ -233,8 +235,18 @@
     zoomCtl.addTo(map);
     if (back) back.hidden = false;
     map.once("moveend", () => { busy = false; if (open) map.scrollWheelZoom.enable(); });
-    map.flyToBounds(bounds, { padding: [60, 60], duration: reduce ? 0 : 0.9, maxZoom: 15 });
+    if (stay) setTimeout(() => { if (open && busy) { busy = false; map.scrollWheelZoom.enable(); } }, 900);
+    else map.flyToBounds(bounds, { padding: [60, 60], duration: reduce ? 0 : 0.9, maxZoom: 15 });
   }
+  // clic sur un lieu : le point et sa fiche glissent au milieu de l'écran
+  map.on("popupopen", (e) => {
+    const src = e.popup._source;
+    if (!src || !src.getLatLng) return;
+    const z = map.getZoom();
+    const h = e.popup.getElement() ? e.popup.getElement().offsetHeight : 0;
+    const c = map.project(src.getLatLng(), z).subtract([0, (h + 12) / 2]);
+    map.panTo(map.unproject(c, z), { animate: !reduce, duration: 0.7, easeLinearity: 0.2 });
+  });
   function leave() {
     if (!open) return;
     open = false; busy = false;

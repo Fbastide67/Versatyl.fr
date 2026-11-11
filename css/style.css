@@ -411,6 +411,16 @@ a { color: inherit; }
   padding: 18px; background: var(--aubergine); color: var(--blanc); border-color: rgba(152, 6, 184, .6);
 }
 .event-visual--soon::after { display: none; }
+/* photo de la soirée à venir : fondue de gauche (texte) à droite (image) */
+.event-visual--soon > * { position: relative; z-index: 1; }
+.event-visual--soon > .soon-photo {
+  position: absolute; z-index: 0; top: 0; right: 0; width: 72%; height: 100%; object-fit: cover;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .55) 45%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, .55) 45%, #000 100%);
+  opacity: .85; transition: transform .6s cubic-bezier(.2, .7, .2, 1), opacity .3s;
+}
+.event-card:hover .soon-photo { transform: scale(1.05); opacity: 1; }
+.event-card--next:first-child .soon-photo { mix-blend-mode: multiply; opacity: 1; }
 .soon-big { font: 400 clamp(56px, 5.4vw, 88px)/1.2 var(--f-display); color: var(--fuchsia); }
 .soon-small { font: 700 13px/1.3 var(--f-ui); text-transform: uppercase; letter-spacing: .06em; }
 /* seule la toute prochaine date est en fuchsia plein : les suivantes restent sombres */

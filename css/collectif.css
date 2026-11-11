@@ -350,3 +350,35 @@
 @media (prefers-reduced-motion: reduce) {
   .member, .member::before, .member::after, .co-res, .co-res-media img, .co-res-name::after { transition: none; }
 }
+
+/* ---------- nos valeurs : la section se fige au scroll et chaque valeur s'écrit mot à mot ----------
+   (comme le manifeste de l'accueil). Actif seulement quand main.js a posé .is-scrub. */
+.co-values.is-scrub { padding-top: 0; }
+.co-values.is-scrub .vs-pin { height: calc(var(--n, 5) * 75vh + 100vh); }
+.co-values.is-scrub .vs-sticky {
+  position: sticky; top: var(--bar-h); height: calc(100vh - var(--bar-h)); height: calc(100svh - var(--bar-h));
+  display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+}
+.co-values.is-scrub .values-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+.co-values.is-scrub .values-grid li {
+  grid-area: 1 / 1; padding: clamp(24px, 3vw, 40px) 0 0; gap: clamp(14px, 1.6vw, 22px);
+  opacity: 0; visibility: hidden; transform: translateY(18px);
+  transition: opacity .45s ease, transform .45s ease, visibility 0s .45s;
+}
+.co-values.is-scrub .values-grid li.is-active {
+  opacity: 1; visibility: visible; transform: none;
+  transition: opacity .45s ease, transform .45s ease, visibility 0s;
+}
+.co-values.is-scrub .value-num { font-size: 13px; }
+.co-values.is-scrub .values-grid h3 { font-size: clamp(40px, 6.4vw, 104px); line-height: 1.2; }
+.co-values.is-scrub .values-grid p {
+  max-width: 36ch; font: 400 clamp(17px, min(2.2vw, 3.6vh), 32px)/1.5 var(--f-ui); color: var(--texte);
+}
+.co-values.is-scrub .values-grid p .w { color: rgba(243, 230, 247, .22); transition: color .3s ease; }
+.co-values.is-scrub .values-grid p .w.on { color: var(--blanc); }
+.value-num i { font-style: normal; color: var(--texte-doux); opacity: .7; }
+.co-values:not(.is-scrub) .value-num i { display: none; }
+@media (max-width: 700px) {
+  .co-values.is-scrub .section-head { margin-bottom: 8px; }
+  .co-values.is-scrub .values-grid p { font-size: clamp(16px, 4.6vw, 20px); }
+}

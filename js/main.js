@@ -73,7 +73,7 @@
 
   /* ---------- vignettes du hero ----------
      L'arrivée en rotation est en CSS (hero-card-in). Ici :
-     - à la souris, elles sont posées au hasard dans le hero à chaque chargement ;
+     - à la souris, elles sont posées à des places fixes autour du logo (SPOTS plus bas) ;
      - --p (0 → 1) suit le scroll du hero, elles dérivent et tournent avec lui ;
      - on les attrape à la souris (--x / --y / --t), et lâchées elles gardent leur élan.
      Au doigt, elles restent rangées et sont de simples liens (sinon on ne pourrait plus scroller). */
@@ -187,37 +187,32 @@
       };
     });
 
-    /* posées au hasard : à chaque chargement, chaque vignette prend une place libre du hero
-       (ni sur une autre vignette, ni sur le compteur de clips), avec une légère rotation.
+    /* posées à des places fixes (toujours les mêmes) : « Résidents » à gauche du logo,
+       « T-shirt » à droite, la prochaine date reste en bas à droite.
+       Positions en fraction du hero (gauche ou droite de la vignette, haut de la vignette).
        Seulement à la souris et sur grand écran : là où on peut ensuite les déplacer. */
+    const SPOTS = [{ left: 0.056, top: 0.41 }, { right: 0.93, top: 0.41 }, null];
     const canScatter = () => finePointer && window.innerWidth > 820;
     let scattered = false;
-    if (canScatter()) {
-      scattered = true;
-      const GAP = 16;
-      const taken = [".hero-hud", ".hero-scroll"].map((sel) => $(sel, heroEl)).filter(Boolean).map((el) => el.getBoundingClientRect());
-      const overlaps = (r) => taken.some((o) => r.left < o.right + GAP && r.right > o.left - GAP && r.top < o.bottom + GAP && r.bottom > o.top - GAP);
-      // la plus grande d'abord : c'est elle qui a le plus de mal à trouver une place
-      vignettes.slice().sort((a, b) => b.card.offsetWidth - a.card.offsetWidth).forEach((v) => {
+    const placeAll = () => {
+      const h = heroEl.getBoundingClientRect(), vh = Math.min(h.height, window.innerHeight);
+      vignettes.forEach((v, i) => {
+        const s = SPOTS[i];
+        if (!s) { v.place(0, 0); return; }
         const b = v.bounds();
-        const rectAt = (dx, dy) => ({ left: b.l + dx, top: b.t + dy, right: b.l + dx + b.w, bottom: b.t + dy + b.h });
-        let spot = null;
-        for (let i = 0; i < 120 && !spot; i++) {
-          const dx = b.x0 + Math.random() * Math.max(0, b.x1 - b.x0), dy = b.y0 + Math.random() * Math.max(0, b.y1 - b.y0);
-          if (!overlaps(rectAt(dx, dy))) spot = { dx, dy };
-        }
-        if (!spot) { taken.push(rectAt(0, 0)); return; }   // aucune place libre : elle garde sa place d'origine
-        taken.push(rectAt(spot.dx, spot.dy));
-        v.place(spot.dx, spot.dy);
-        v.card.style.setProperty("--r", (Math.random() * 14 - 7).toFixed(1) + "deg");
+        const left = s.left != null ? h.left + s.left * h.width : h.left + s.right * h.width - b.w;
+        const top = h.top + s.top * vh;
+        v.place(clamp(left - b.l, b.x0, b.x1), clamp(top - b.t, b.y0, b.y1));
       });
-    }
+    };
+    if (canScatter()) { scattered = true; placeAll(); }
     let fitT;
     window.addEventListener("resize", () => {
       clearTimeout(fitT);
       fitT = setTimeout(() => {
         // passage en petit écran : elles retournent se ranger en bas
         if (scattered && !canScatter()) { scattered = false; vignettes.forEach((v) => v.place(0, 0)); }
+        else if (canScatter()) { scattered = true; placeAll(); }
         else vignettes.forEach((v) => v.refit());
       }, 150);
     });
@@ -266,6 +261,53 @@
     addEventListener("scroll", update, { passive: true });
     addEventListener("resize", update);
     update();
+  }
+
+  /* ---------- page collectif, nos valeurs : la section se fige et les valeurs s'écrivent
+     l'une après l'autre, mot à mot, au fil du scroll (même principe que le manifeste) ---------- */
+  const vsSec = $("[data-scrub-values]");
+  if (vsSec && !reduce) {
+    const pin = $(".vs-pin", vsSec);
+    const items = $$(".values-grid li", vsSec).map((li) => {
+      const p = $("p", li);
+      const wrap = (node) => {
+        [...node.childNodes].forEach((n) => {
+          if (n.nodeType === 3) {
+            const frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach((part) => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) frag.appendChild(document.createTextNode(part));
+              else { const sp = document.createElement("span"); sp.className = "w"; sp.textContent = part; frag.appendChild(sp); }
+            });
+            n.replaceWith(frag);
+          } else if (n.nodeType === 1) wrap(n);
+        });
+      };
+      if (p) wrap(p);
+      return { li, words: p ? $$(".w", p) : [] };
+    });
+    if (pin && items.length) {
+      vsSec.classList.add("is-scrub");
+      pin.style.setProperty("--n", items.length);
+      let lastI = -1, lastN = -1;
+      const update = () => {
+        const r = pin.getBoundingClientRect();
+        const run = Math.max(1, r.height - innerHeight);
+        const p = Math.min(1, Math.max(0, -r.top / run)) * items.length;
+        const i = Math.min(items.length - 1, Math.floor(p));
+        const it = items[i];
+        // chaque valeur : ses mots s'allument sur les 3/4 de sa part de scroll, puis elle reste lisible
+        const n = Math.round(Math.min(1, (p - i) / 0.75) * it.words.length);
+        if (i !== lastI) {
+          items.forEach((o, k) => o.li.classList.toggle("is-active", k === i));
+          lastI = i; lastN = -1;
+        }
+        if (n !== lastN) { it.words.forEach((w, k) => w.classList.toggle("on", k < n)); lastN = n; }
+      };
+      addEventListener("scroll", update, { passive: true });
+      addEventListener("resize", update);
+      update();
+    }
   }
 
   /* ---------- vidéos : chargées et lancées seulement quand elles sont visibles ----------
