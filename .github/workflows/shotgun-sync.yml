@@ -8,7 +8,7 @@
 # Secrets à renseigner dans Settings → Secrets and variables → Actions :
 #   SHOTGUN_TOKEN        (Smartboard → Settings → Integrations → Shotgun APIs → « Generate a token »)
 #   SHOTGUN_ORGANIZER_ID (même page)
-#   OVH_FTP_PASSWORD     (déjà utilisé par « Publier sur versatyl.fr »)
+#   OVH_FTP_PASSWORD     (facultatif : sans lui, seul GitHub Pages est mis à jour)
 name: Synchro Shotgun
 
 on:
@@ -72,9 +72,11 @@ jobs:
         env:
           LFTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
         run: |
+          # Tant que le site vitrine n'est pas publié sur OVH (secret absent), on s'arrête là :
+          # le commit sur main suffit pour mettre à jour la version GitHub Pages.
           if [ -z "$LFTP_PASSWORD" ]; then
-            echo "::error::Le secret OVH_FTP_PASSWORD n'est pas renseigné."
-            exit 1
+            echo "::notice::OVH_FTP_PASSWORD absent : pas d'envoi sur OVH (GitHub Pages est mis à jour par le commit)."
+            exit 0
           fi
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           lftp -c "
