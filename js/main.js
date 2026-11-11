@@ -14,7 +14,11 @@
   $$("[data-insta]").forEach((a) => (a.href = CFG.instagram));
   $$("[data-tiktok]").forEach((a) => (a.href = CFG.tiktok));
   $$("[data-shotgun]").forEach((a) => { if (!a.getAttribute("href") || a.getAttribute("href") === "#") a.href = CFG.shotgun; });
-  $$("[data-mail]").forEach((a) => { a.href = "mailto:" + CFG.email; if (!a.textContent.trim()) a.textContent = CFG.email; });
+  $$("[data-mail]").forEach((a) => {
+    a.href = "mailto:" + CFG.email + (a.dataset.subject ? "?subject=" + encodeURIComponent(a.dataset.subject) : "");
+    if (!a.textContent.trim()) a.textContent = CFG.email;
+  });
+  $$("[data-form]").forEach((a) => (a.href = CFG.recrutementForm));
 
   /* ---------- menu mobile ---------- */
   const burger = $(".topbar-burger");

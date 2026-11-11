@@ -11,6 +11,9 @@ window.VERSATYL_CONFIG = {
   tiktok: "https://www.tiktok.com/@versatyl_marseille",
   email: "versatyl.marseille@gmail.com",
 
+  // Formulaire Google de recrutement des DJ (Tout est permis), page Contact
+  recrutementForm: "https://docs.google.com/forms/d/e/1FAIpQLSexZ8eUBlt5buI94pD2tzBiawNqQHlMjBpratAEv0bWOjJtdA/viewform",
+
   // Billetterie : page organisateur Shotgun (toutes les dates en vente)
   shotgun: "https://shotgun.live/fr/venues/versatyl-marseille",
 

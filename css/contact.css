@@ -1,0 +1,149 @@
+/* ==========================================================
+   VERSATYL — page « Contact »
+   S'appuie sur css/style.css (variables, .h-display, .btn, .lead…)
+   Règle Redband : interligne >= 1.2, pas d'accents dans les titres Redband.
+   ========================================================== */
+
+/* équerres dans les coins */
+.ct-poster-frame::before,
+.ct-role::before,
+.ct-call::before {
+  content: ""; position: absolute; pointer-events: none;
+  --cc: var(--fuchsia); --cl: 16px;
+  background:
+    linear-gradient(var(--cc) 0 0) 0 0 / var(--cl) 2px,
+    linear-gradient(var(--cc) 0 0) 0 0 / 2px var(--cl),
+    linear-gradient(var(--cc) 0 0) 100% 0 / var(--cl) 2px,
+    linear-gradient(var(--cc) 0 0) 100% 0 / 2px var(--cl),
+    linear-gradient(var(--cc) 0 0) 0 100% / var(--cl) 2px,
+    linear-gradient(var(--cc) 0 0) 0 100% / 2px var(--cl),
+    linear-gradient(var(--cc) 0 0) 100% 100% / var(--cl) 2px,
+    linear-gradient(var(--cc) 0 0) 100% 100% / 2px var(--cl);
+  background-repeat: no-repeat;
+}
+
+.ct-h2 {
+  margin: 0; font: 400 var(--h-section)/1.2 var(--f-display); text-transform: uppercase;
+  color: var(--blanc); text-shadow: 4px 4px 0 var(--fuchsia); overflow-wrap: anywhere;
+}
+.ct-h2.reveal { transform: none; }
+
+/* ---------- hero ---------- */
+.ct-hero {
+  display: grid; gap: clamp(40px, 5vw, 72px); align-items: center;
+  padding: clamp(44px, 7vw, 110px) var(--gutter) clamp(64px, 8vw, 110px);
+  background:
+    radial-gradient(60% 55% at 85% 35%, rgba(152, 6, 184, .32), transparent 70%),
+    var(--nuit);
+}
+.ct-hero-text { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; min-width: 0; }
+.ct-hero-title { font-size: clamp(44px, 12vw, 120px); line-height: 1.2; overflow-wrap: normal; }
+.ct-hero .lead { margin: 0; }
+
+.ct-channels { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; min-width: 0; }
+.ct-channel {
+  display: grid; gap: 8px; padding: 18px 20px;
+  background: var(--aubergine); border: 1px solid rgba(152, 6, 184, .55);
+  transition: border-color .2s;
+}
+.ct-channel:hover { border-color: var(--fuchsia); }
+.ct-channel-kicker { font: 700 10px/1.2 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--fuchsia); }
+.ct-channel-link {
+  font: 700 clamp(14px, 1.5vw, 18px)/1.3 var(--f-ui); letter-spacing: .02em; color: var(--blanc);
+  text-decoration: none; overflow-wrap: anywhere; transition: color .2s;
+}
+.ct-channel-link:hover { color: var(--fuchsia); }
+@media (min-width: 960px) {
+  .ct-hero { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
+  .ct-hero-title { font-size: clamp(56px, 6.4vw, 120px); }
+}
+
+/* ---------- tout est permis ---------- */
+.ct-tep {
+  display: grid; gap: clamp(40px, 5vw, 80px); align-items: start;
+  padding: clamp(70px, 9vw, 140px) var(--gutter);
+  background: linear-gradient(180deg, var(--nuit), var(--aubergine) 50%, var(--nuit));
+}
+.ct-tep-text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; min-width: 0; }
+.ct-tep-text .lead { margin: 0; }
+.ct-tep .kicker { font: 700 11px/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--fuchsia); }
+
+.ct-facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.ct-facts li {
+  font: 700 12px/1.3 var(--f-ui); letter-spacing: .06em; text-transform: uppercase;
+  background: rgba(14, 1, 24, .7); border: 1px solid var(--fuchsia); padding: 8px 12px;
+}
+.ct-facts b { color: var(--fuchsia); font-weight: 900; }
+
+.ct-call {
+  position: relative; display: grid; gap: 14px; justify-items: start;
+  margin-top: 12px; padding: clamp(24px, 2.6vw, 36px); width: 100%; box-sizing: border-box;
+  background: var(--fuchsia); color: var(--nuit);
+}
+.ct-call::before { inset: 6px; --cc: var(--nuit); }
+.ct-call-title { margin: 0; font: 900 clamp(18px, 2vw, 26px)/1.25 var(--f-ui); text-transform: uppercase; }
+.ct-call p { margin: 0; font-size: clamp(14px, 1.15vw, 17px); line-height: 1.6; max-width: 56ch; }
+.ct-call .btn { box-shadow: 6px 6px 0 var(--nuit); }
+
+.ct-tep-poster { position: relative; margin: 0; justify-self: center; width: min(100%, 440px); }
+.ct-poster-frame {
+  position: relative; aspect-ratio: 640 / 800;
+  background: var(--prune); border: 1px solid var(--fuchsia);
+  box-shadow: 10px 10px 0 var(--violet-profond);
+}
+.ct-poster-frame::before { inset: -11px; z-index: 1; --cl: 26px; }
+.ct-poster-frame img { width: 100%; height: 100%; object-fit: cover; }
+.ct-tep-poster figcaption {
+  margin-top: 16px;
+  font: 700 10px/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--texte-doux);
+}
+@media (min-width: 1000px) {
+  .ct-tep { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
+  .ct-tep-poster { justify-self: end; position: sticky; top: calc(var(--bar-h) + 32px); }
+}
+
+/* ---------- on recrute ---------- */
+.ct-join {
+  padding: clamp(80px, 10vw, 150px) var(--gutter);
+  background:
+    radial-gradient(70% 60% at 80% 30%, rgba(237, 1, 182, .2), transparent 70%),
+    linear-gradient(180deg, var(--nuit), var(--aubergine));
+}
+.ct-join-head { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: clamp(32px, 4vw, 56px); }
+.ct-join-head .lead { margin: 0; max-width: 64ch; }
+
+.ct-roles { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+@media (min-width: 700px) { .ct-roles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .ct-roles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ct-role {
+  position: relative; display: grid; gap: 10px; align-content: start;
+  padding: clamp(24px, 2.4vw, 32px);
+  background: var(--aubergine); border: 1px solid rgba(152, 6, 184, .5);
+  transition: border-color .2s, transform .2s;
+}
+.ct-role::before { inset: 6px; }
+.ct-role:hover { border-color: var(--fuchsia); transform: translateY(-3px); }
+.ct-role h3 { margin: 0; font: 900 clamp(15px, 1.5vw, 20px)/1.3 var(--f-ui); text-transform: uppercase; color: var(--fuchsia); }
+.ct-role p { margin: 0; line-height: 1.6; color: var(--texte); }
+
+.ct-join-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; margin-top: clamp(36px, 4vw, 56px); }
+.ct-join-cta > p { margin: 0; max-width: 60ch; line-height: 1.7; }
+.ct-join-note {
+  font: 700 11px/1.5 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--texte-doux);
+}
+.ct-join-note a { color: var(--fuchsia); }
+
+/* ---------- safe space ---------- */
+.ct-safe {
+  padding: clamp(56px, 7vw, 100px) var(--gutter);
+  background: var(--nuit); border-top: 1px solid rgba(237, 1, 182, .35);
+  display: grid; gap: 16px;
+}
+.ct-safe-title {
+  margin: 0; font: 400 clamp(32px, 4.4vw, 60px)/1.2 var(--f-display); text-transform: uppercase; color: var(--fuchsia);
+}
+.ct-safe p { margin: 0; max-width: 70ch; line-height: 1.7; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ct-role, .ct-channel { transition: none; }
+}
